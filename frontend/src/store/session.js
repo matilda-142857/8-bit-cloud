@@ -48,6 +48,22 @@ const sessionReducer = (state = initialState, action) => {
     return response;
     };
 
+export const demoLogin = () => async (dispatch) => 
+{
+    const credential = "Demo";
+    const password = "password";
+    const res = await csrfFetch("/api/session", {
+        method: "POST",
+        body: JSON.stringify({
+        credential,
+        password,
+        }),
+    });
+    const data = await res.json();
+    dispatch(setUser(data.user));
+    return res;
+    };
+
   export const restoreUser = () => async dispatch => {
     const response = await csrfFetch('/api/session');
     const data = await response.json();
