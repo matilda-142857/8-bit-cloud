@@ -1,3 +1,5 @@
 git checkout -b <name>      -     creates a branch and switches to it
 
 git push -u origin <name>   -     sets this branch to push to the <name> branch
+
+git branch -d <name>        -     deletes branch
