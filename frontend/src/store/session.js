@@ -50,7 +50,7 @@ const sessionReducer = (state = initialState, action) => {
 
 export const demoLogin = () => async (dispatch) => 
 {
-    const credential = "Demo";
+    const credential = "Demo-lition";
     const password = "password";
     const res = await csrfFetch("/api/session", {
         method: "POST",

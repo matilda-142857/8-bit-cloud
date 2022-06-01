@@ -30,6 +30,7 @@ if (!isProduction) {
   );
   
   // Set the _csrf token and create req.csrfToken method
+  // Security checker
   app.use(
     csurf({
       cookie: {
