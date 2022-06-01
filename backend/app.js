@@ -15,7 +15,6 @@ app.use(cookieParser());
 app.use(express.json());
 
 const routes = require('./routes');
-app.use(routes);
 
 // Security Middleware
 if (!isProduction) {
@@ -40,6 +39,8 @@ if (!isProduction) {
       }
     })
   );
+
+  app.use(routes);
 
   // Catch unhandled requests and forward to error handler.
   app.use((_req, _res, next) => {
