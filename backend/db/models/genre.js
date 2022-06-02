@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     songId: DataTypes.INTEGER
   }, {});
   Genre.associate = function(models) {
-    Genre.hasMany(models.Song, {foreignKey: "uploaderId"})
+    Genre.hasMany(models.Song, {foreignKey: "genreId"})
   };
   return Genre;
 };

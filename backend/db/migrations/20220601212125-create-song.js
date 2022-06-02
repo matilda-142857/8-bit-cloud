@@ -19,7 +19,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: { model: 'Users'}
       },
-      genre: {
+      genreId: {
         type: Sequelize.STRING,
         references: { model: 'Genres'}
       },

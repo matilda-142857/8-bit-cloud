@@ -4,11 +4,11 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     gameId: DataTypes.INTEGER,
     uploaderId: DataTypes.INTEGER,
-    genre: DataTypes.STRING,
+    genreId: DataTypes.STRING,
     songmp3: DataTypes.STRING
   }, {});
   Song.associate = function(models) {
-    Song.belongsTo(models.Genre, {foreignKey: 'genre'})
+    Song.belongsTo(models.Genre, {foreignKey: 'genreId'})
     Song.belongsTo(models.User, {foreignKey: 'userId'})
     Song.belongsTo(models.Game, {foreignKey: 'gameId'})
     // Song.hasMany(models.Comment, {foreignKey: 'songId'})
