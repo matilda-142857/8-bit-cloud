@@ -8,7 +8,10 @@ module.exports = (sequelize, DataTypes) => {
     songmp3: DataTypes.STRING
   }, {});
   Song.associate = function(models) {
-    // associations can be defined here
+    Song.belongsTo(models.Genre, {foreignKey: 'genre'})
+    Song.belongsTo(models.User, {foreignKey: 'userId'})
+    Song.belongsTo(models.Game, {foreignKey: 'gameId'})
+    Song.hasMany(models.Comment, {foreignKey: 'songId'})
   };
   return Song;
 };

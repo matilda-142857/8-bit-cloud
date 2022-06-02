@@ -22,7 +22,7 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route path="/upload">
-            {/* <UploadFormPage /> */}
+            <UploadForm />
           </Route>
         </Switch>
       )}

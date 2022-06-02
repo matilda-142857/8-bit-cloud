@@ -12,24 +12,29 @@ module.exports = {
         type: Sequelize.STRING(50)
       },
       gameId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: { model: 'Games'}
       },
       uploaderId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: { model: 'Users'}
       },
       genre: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        references: { model: 'Genres'}
       },
       songmp3: {
         type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('now')
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('now')
       }
     });
   },
