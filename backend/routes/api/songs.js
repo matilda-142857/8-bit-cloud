@@ -55,7 +55,8 @@ router.get(
 //add a song
 router.post(
   '/upload', 
-  validateSong, requireAuth, asyncHandler(async(req,res)=>{
+  // validateSong, 
+  requireAuth, asyncHandler(async(req,res)=>{
     const {title, gameId, genre, songmp3} = req.body
     let newSong = await Song.create({
       title,

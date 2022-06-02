@@ -1,4 +1,3 @@
-import { ValidationError } from "../utils/validationError"
 import { csrfFetch } from './csrf';
 
 const GET_ALL_SONGS = "song/GET";
@@ -47,7 +46,7 @@ export const getSongsUser = () => async (dispatch) => {
 };
 
 export const createSong = (data) => async (dispatch) => {
-  const response = await csrfFetch(`/api/songs`, {
+  const response = await csrfFetch(`/api/songs/upload`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
