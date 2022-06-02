@@ -2,25 +2,31 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    /*
-      Add altering commands here.
-      Return a promise to correctly handle asynchronicity.
+      return queryInterface.bulkInsert('Genres', [
+      { type: "Action/Adventure", 
+      songId: 1
+      },
+      { type: "Role-playing Games(RPGs)", 
+      songId: 2
+      },
+      { type: "Survival/ Exploration", 
+      songId: 3
+      },
+      { type: "Strategy", 
+      songId: 4
+      },
+      { type: "MOBAS", 
+      songId: 5
+      },
+      { type: "Party Games", 
+      songId: 6
+      }
+    ], {});
 
-      Example:
-      return queryInterface.bulkInsert('People', [{
-        name: 'John Doe',
-        isBetaMember: false
-      }], {});
-    */
   },
 
   down: (queryInterface, Sequelize) => {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
+      return queryInterface.bulkDelete('Genres', null, {});
 
-      Example:
-      return queryInterface.bulkDelete('People', null, {});
-    */
   }
 };
