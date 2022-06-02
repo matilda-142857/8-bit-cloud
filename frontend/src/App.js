@@ -18,10 +18,10 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/signup">
+          <Route exact path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/upload">
+          <Route exact path="/upload">
             <UploadForm />
           </Route>
         </Switch>
