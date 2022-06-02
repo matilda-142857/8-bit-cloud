@@ -1,3 +1,6 @@
+body{
+    z-index: 101;
+}
 #modal {
     position: fixed;
     top: 0;

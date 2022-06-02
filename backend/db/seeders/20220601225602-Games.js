@@ -44,6 +44,26 @@ module.exports = {
         createdAt: new Date(), 
         updatedAt: new Date() 
       },
+      { title: 'Ori and the Blind Forest', 
+        img_url: "https://f4.bcbits.com/img/a1402023301_10.jpg", 
+        createdAt: new Date(), 
+        updatedAt: new Date() 
+      },
+      { title: 'Undertale', 
+        img_url: "https://f4.bcbits.com/img/a2854475053_5.jpg", 
+        createdAt: new Date(), 
+        updatedAt: new Date() 
+      },
+      { title: 'Kingdom Hearts', 
+        img_url: "https://i.scdn.co/image/ab67616d0000b2736a5a249912d0d3573aaa264f", 
+        createdAt: new Date(), 
+        updatedAt: new Date() 
+      },
+      { title: 'OFF', 
+        img_url: "https://static.wikia.nocookie.net/offgame/images/8/81/Off-soundtrack.jpg/revision/latest?cb=20121223002501", 
+        createdAt: new Date(), 
+        updatedAt: new Date() 
+      },
     ], {});
   },
 

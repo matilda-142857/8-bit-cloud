@@ -33,8 +33,8 @@ const validateSong = [
 
 //get all songs
 router.get(
-  '/songs', 
-  asyncHandler(async (req,res)=>{
+  '/', 
+  asyncHandler(async (req,res) => {
     const allSongs = await Song.findAll()
     res.json(allSongs)
   })
@@ -78,6 +78,16 @@ router.get(
     res.json(song)
   })
 )
+
+//get 12 songs on splash page
+router.get(
+  "/splash",
+  asyncHandler(async (req, res) => {
+    const splashSongs = await Song.findAll({ limit: 12 });
+    return res.json({ splashSongs });
+  })
+);
+
 
 //edit single song
 router.put(

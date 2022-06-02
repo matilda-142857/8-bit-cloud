@@ -11,10 +11,6 @@ module.exports = {
       type: {
         type: Sequelize.STRING(50)
       },
-      songId: {
-        type: Sequelize.INTEGER,
-        references: { model: 'Songs'}
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

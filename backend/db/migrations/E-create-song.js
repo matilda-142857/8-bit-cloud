@@ -21,7 +21,7 @@ module.exports = {
       },
       genreId: {
         type: Sequelize.STRING,
-        references: { model: 'Genres'}
+        references: { model: 'Genres', key: 'id' }
       },
       songmp3: {
         type: Sequelize.STRING

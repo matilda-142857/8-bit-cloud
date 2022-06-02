@@ -3,6 +3,14 @@ import { csrfFetch } from './csrf';
 const GET_ALL_SONGS = "song/GET";
 const ADD_SONG = "song/ADD";
 const DELETE_SONG= "song/DELETE"
+const GET_ONE_SONG = "songs/getOneSong";
+
+const getOneSong = (song) => {
+  return {
+    type: GET_ONE_SONG,
+    song,
+  };
+};
 
 const actionAllSongs = songs => {
   return {
@@ -27,12 +35,18 @@ const actionDeleteSong = songId => {
 
 export const getAllSongs = () => async (dispatch) => {
   const response = await fetch(`/api/songs`);
-
   if (response.ok) {
     const songs = await response.json();
     dispatch (actionAllSongs(songs));
     return songs;
   }
+};
+
+export const getCurrentSong = (id) => async (dispatch) => {
+  const res = await fetch(`/api/songs/${id}`);
+  const data = await res.json();
+  dispatch(getOneSong(data));
+  return res;
 };
 
 export const getSongsUser = () => async (dispatch) => {

@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Song.associate = function(models) {
     Song.belongsTo(models.Genre, {foreignKey: 'genreId'})
-    Song.belongsTo(models.User, {foreignKey: 'userId'})
+    Song.belongsTo(models.User, {foreignKey: 'uploaderId'})
     Song.belongsTo(models.Game, {foreignKey: 'gameId'})
     // Song.hasMany(models.Comment, {foreignKey: 'songId'})
   };

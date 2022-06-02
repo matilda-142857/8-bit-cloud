@@ -3,26 +3,19 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
       return queryInterface.bulkInsert('Genres', [
-      { type: "Action/Adventure", 
-      songId: 1
+      { type: "Action/Adventure"
       },
-      { type: "Role-playing Games(RPGs)", 
-      songId: 2
+      { type: "Role-playing Games(RPGs)"
       },
-      { type: "Survival/ Exploration", 
-      songId: 3
+      { type: "Survival/ Exploration"
       },
-      { type: "Strategy", 
-      songId: 4
+      { type: "Strategy"
       },
-      { type: "MOBAS", 
-      songId: 5
+      { type: "MOBAS"
       },
-      { type: "Party Games", 
-      songId: 6
+      { type: "Party Games"
       }
     ], {});
-
   },
 
   down: (queryInterface, Sequelize) => {
