@@ -20,8 +20,12 @@ module.exports = {
         references: { model: 'Users'}
       },
       genreId: {
-        type: Sequelize.STRING,
-        references: { model: 'Genres', key: 'id' }
+        type: Sequelize.INTEGER,
+        references: { model: 'Genres'}
+      },
+      playlistId: {
+        type: Sequelize.INTEGER,
+        references: { model: 'Playlists'}
       },
       songmp3: {
         type: Sequelize.STRING

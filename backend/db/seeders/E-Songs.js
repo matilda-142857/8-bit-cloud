@@ -8,6 +8,7 @@ module.exports = {
         uploaderId: 1, 
         genreId: 1, 
         songmp3: "s3://eightbitcloud/Final Fantasy X - To Zanarkand.mp3", 
+        playlistId: null,
         createdAt: new Date(), 
         updatedAt: new Date() 
       },
@@ -16,6 +17,7 @@ module.exports = {
         uploaderId: 1, 
         genreId: 2, 
         songmp3: "s3://eightbitcloud/Elden Ring - Malenia, Blade of Miquella.mp3", 
+        playlistId: null,
         createdAt: new Date(), 
         updatedAt: new Date() 
       },
@@ -24,6 +26,7 @@ module.exports = {
         uploaderId: 1, 
         genreId: 3, 
         songmp3: "s3://eightbitcloud/Don't Starve - Ragtime.mp3", 
+        playlistId: null,
         createdAt: new Date(), 
         updatedAt: new Date() 
       },  
@@ -32,6 +35,7 @@ module.exports = {
         uploaderId: 1, 
         genreId: 4, 
         songmp3: "s3://eightbitcloud/Heroes Of Might And Magic IV - Sea Theme.mp3", 
+        playlistId: null,
         createdAt: new Date(), 
         updatedAt: new Date() 
       },  
@@ -40,6 +44,7 @@ module.exports = {
         uploaderId: 1, 
         genreId: 5, 
         songmp3: "s3://eightbitcloud/DOTA 2- Main.mp3", 
+        playlistId: null,
         createdAt: new Date(), 
         updatedAt: new Date() 
       },
@@ -48,6 +53,7 @@ module.exports = {
         uploaderId: 1, 
         genreId: 6, 
         songmp3: "s3://eightbitcloud/Kahoot - 20 Seconds.mp3", 
+        playlistId: null,
         createdAt: new Date(), 
         updatedAt: new Date() 
       },
@@ -56,6 +62,7 @@ module.exports = {
         uploaderId: 1, 
         genreId: 5, 
         songmp3: "s3://eightbitcloud/Dota 2 - Main Menu Flute Theme.mp3", 
+        playlistId: null,
         createdAt: new Date(), 
         updatedAt: new Date() 
       },
@@ -64,6 +71,7 @@ module.exports = {
         uploaderId: 1, 
         genreId: 2, 
         songmp3: "s3://eightbitcloud/Elden Ring - Mohg, Lord of Blood.mp3", 
+        playlistId: null,
         createdAt: new Date(), 
         updatedAt: new Date() 
       },
@@ -73,6 +81,7 @@ module.exports = {
         uploaderId: 1, 
         genreId: 1, 
         songmp3: "s3://eightbitcloud/Hollow Knight - Fungal Wastes.mp3", 
+        playlistId: 3,
         createdAt: new Date(), 
         updatedAt: new Date() 
       },
@@ -81,6 +90,7 @@ module.exports = {
         uploaderId: 1, 
         genreId: 6, 
         songmp3: "s3://eightbitcloud/Fibbage 3- Credits.mp3", 
+        playlistId: null,
         createdAt: new Date(), 
         updatedAt: new Date() 
       },
@@ -89,6 +99,7 @@ module.exports = {
         uploaderId: 1, 
         genreId: 1, 
         songmp3: "s3://eightbitcloud/Ori - Light of Nibel.mp3", 
+        playlistId: 3,
         createdAt: new Date(), 
         updatedAt: new Date() 
       },
@@ -97,6 +108,7 @@ module.exports = {
         uploaderId: 1, 
         genreId: 2, 
         songmp3: "s3://eightbitcloud/Undertale - Hopes and Dreams.mp3", 
+        playlistId: 2,
         createdAt: new Date(), 
         updatedAt: new Date() 
       },  
@@ -105,6 +117,7 @@ module.exports = {
         uploaderId: 1, 
         genreId: 2, 
         songmp3: "s3://eightbitcloud/Undertale - Megalovania.mp3", 
+        playlistId: 1,
         createdAt: new Date(), 
         updatedAt: new Date() 
       },  
@@ -112,7 +125,8 @@ module.exports = {
         gameId: 11, 
         uploaderId: 1, 
         genreId: 1, 
-        songmp3: "s3://eightbitcloud/KH - Simple and Clean - Ray of Hope Mix.mp3", 
+        songmp3: "s3://eightbitcloud/KH - Simple and Clean - Ray of Hope Mix.mp3",
+        playlistId: 2, 
         createdAt: new Date(), 
         updatedAt: new Date() 
       },
@@ -120,7 +134,8 @@ module.exports = {
         gameId: 12, 
         uploaderId: 1, 
         genreId: 2, 
-        songmp3: "s3://eightbitcloud/OFF - Fake Orchestra.mp3", 
+        songmp3: "s3://eightbitcloud/OFF - Fake Orchestra.mp3",
+        playlistId: 1, 
         createdAt: new Date(), 
         updatedAt: new Date() 
       },

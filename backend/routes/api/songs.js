@@ -34,7 +34,7 @@ const validateSong = [
 //get all songs
 router.get(
   '/', 
-  asyncHandler(async (req,res) => {
+  asyncHandler(async (req, res) => {
     const allSongs = await Song.findAll()
     res.json(allSongs)
   })

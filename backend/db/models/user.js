@@ -48,9 +48,10 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   User.associate = function(models) {
-    User.hasMany(models.Song, {foreignKey: "userId"})
-    User.hasMany(models.Playlist, {foreignKey:"playlistId"})
-    User.hasMany(models.Game, {foreignKey: "gameId"})
+    User.hasMany(models.Song, {foreignKey: "uploaderId"})
+    User.hasMany(models.Playlist, {foreignKey:"userId"})
+    User.hasMany(models.Game, {foreignKey: "userId"})
+    User.hasMany(models.Comment, { foreignKey: "userId" });
   };
 
   User.prototype.toSafeObject = function() { // remember, this cannot be an arrow function
