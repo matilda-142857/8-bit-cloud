@@ -34,7 +34,7 @@ const actionDeleteSong = songId => {
 }
 
 export const getAllSongs = () => async (dispatch) => {
-  const response = await fetch(`/api/songs`);
+  const response = await csrfFetch(`/api/songs`);
   if (response.ok) {
     const songs = await response.json();
     dispatch (actionAllSongs(songs));
@@ -43,7 +43,7 @@ export const getAllSongs = () => async (dispatch) => {
 };
 
 export const getCurrentSong = (id) => async (dispatch) => {
-  const res = await fetch(`/api/songs/${id}`);
+  const res = await csrfFetch(`/api/songs/${id}`);
   const data = await res.json();
   dispatch(getOneSong(data));
   return res;
@@ -124,7 +124,7 @@ const songReducer = (state = {}, action) => {
 
       case GET_ALL_SONGS:
         const currentState = {}
-          action.songs.forEach(song => newState[song.id] = song)
+          action.songs.forEach(song => currentState[song.id] = song)
           return currentState
 
       case ADD_SONG:
