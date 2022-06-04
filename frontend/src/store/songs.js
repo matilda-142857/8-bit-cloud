@@ -3,14 +3,14 @@ import { csrfFetch } from './csrf';
 const GET_ALL_SONGS = "song/GET";
 const ADD_SONG = "song/ADD";
 const DELETE_SONG= "song/DELETE"
-const GET_ONE_SONG = "songs/getOneSong";
+// const GET_ONE_SONG = "song/GET";
 
-const getOneSong = (song) => {
-  return {
-    type: GET_ONE_SONG,
-    song,
-  };
-};
+// const getOneSong = (song) => {
+//   return {
+//     type: GET_ONE_SONG,
+//     song
+//   };
+// };
 
 const actionAllSongs = songs => {
   return {
@@ -42,51 +42,79 @@ export const getAllSongs = () => async (dispatch) => {
   }
 };
 
-export const getCurrentSong = (id) => async (dispatch) => {
-  const res = await csrfFetch(`/api/songs/${id}`);
-  const data = await res.json();
-  dispatch(getOneSong(data));
-  return res;
-};
+// export const getCurrentSong = (id) => async (dispatch) => {
+//   const response = await csrfFetch(`/api/songs/${id}`);
+//   if (response.ok) {
+//     const data = await response.json();
+//     dispatch (getOneSong(data));
+//     return data;
+//   }
+// };
 
 export const getSongsUser = () => async (dispatch) => {
   const response = await fetch(`/api/songs/library`);
 
   if (response.ok) {
-    const songs = await response.json();
-    dispatch (actionAllSongs(songs));
-    return songs;
+    const song = await response.json();
+    dispatch (actionAllSongs(song));
+    return song;
   }
 };
 
-export const createSong = (data) => async (dispatch) => {
+export const createSong = (newSong) => async (dispatch) => {
+
+  const { title, gameId, uploaderId, genreId, playlistId, songmp3 } = newSong;
+  console.log(newSong);
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("gameId", gameId);
+  if (uploaderId) {
+    formData.append("uploaderId", uploaderId);
+  }
+  formData.append("genreId", genreId);
+  if (playlistId){
+    formData.append("playlistId", playlistId);
+  }
+
+  formData.append("songmp3", songmp3);
+
   const response = await csrfFetch(`/api/songs/upload`, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "multipart/form-data",
     },
-    body: JSON.stringify(data),
+    body: formData,
   });
+
   const song = await response.json();
-  if (response.ok){
-    dispatch(actionAddSong(song))
-  }
+  dispatch(getAllSongs());
   return song;
 };
 
-export const updateSong = (id, data) => async(dispatch)=>{
-  const response = await csrfFetch(`/api/songs/${id}`, {
+export const updateSong = (song) => async(dispatch)=>{
+
+  const { title, gameId, uploaderId, genreId, playlistId, songmp3 } = song;
+
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("gameId", gameId);
+  formData.append("uploaderId", uploaderId);
+  formData.append("genreId", genreId);
+  formData.append("playlistId", playlistId);
+  formData.append("songmp3", songmp3);
+  
+  const response = await csrfFetch(`/api/songs`, {
     method: "PUT",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "multipart/form-data",
     },
-    body: JSON.stringify(data),
+    body: formData,
   });
-  const song = await response.json()
+  const editedSong = await response.json()
   if (response.ok){
     dispatch(actionAddSong(song))
   }
-  return song;
+  return editedSong;
 }
 
 export const deleteSong = (songId) => async dispatch => {
@@ -99,7 +127,7 @@ export const deleteSong = (songId) => async dispatch => {
   if (response.ok) {
     const deleteId = await response.json()
     dispatch(actionDeleteSong(deleteId))
-    return deleteId
+    return deleteId;
   }
 }
 
@@ -126,6 +154,11 @@ const songReducer = (state = {}, action) => {
         const currentState = {}
           action.songs.forEach(song => currentState[song.id] = song)
           return currentState
+
+      // case GET_ONE_SONG:
+      //   let thisState = {}
+      //   thisState = {...state, [action.song.id]: action.song}
+      //   return thisState
 
       case ADD_SONG:
         let newState = {}

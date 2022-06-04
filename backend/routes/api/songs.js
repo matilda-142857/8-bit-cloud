@@ -33,10 +33,13 @@ const validateSong = [
 
 //get all songs
 router.get(
-  '/', 
-  asyncHandler(async (req, res) => {
-    const allSongs = await Song.findAll()
-    res.json(allSongs)
+  '/',
+  asyncHandler(async(req, res) => {
+    const songs = await Song.findAll
+    ({
+      include: [Game]
+    })
+    res.json(songs);
   })
 )
 
@@ -64,17 +67,21 @@ router.post(
       genre,
       songmp3
     })
+    console.log(req.body)
     res.json(newSong)
   })
 )
 
 //get one song
 router.get(
-  '/songs/:songId', 
+  '/:songId', 
   restoreUser, asyncHandler(async(req,res)=>{
-    const songId = parseInt(req.params.id, 10);
+    console.log('inside song route')
+    console.log(req.params)
+    const songId = parseInt(req.params.songId, 10);
+    console.log(songId)
     const song = await Song.findByPk(songId)
-
+    console.log(song);
     res.json(song)
   })
 )
@@ -91,7 +98,7 @@ router.get(
 
 //edit single song
 router.put(
-  '/songs/:songid', 
+  '/:songid', 
   validateSong, requireAuth, asyncHandler(async(req,res)=>{
     const {title, gameId, genre, songmp3} = req.body
     const songId = parseInt(req.params.id, 10);

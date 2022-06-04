@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { createSong } from "../../store/songs";
 import { useDispatch, useSelector } from "react-redux";
+import Navigation from "../Navigation";
 import { useHistory } from "react-router-dom";
 import image from '../UploadFormPage/image.png';
 import "./upload.css";
 
-export default function UploadForm() {
+export default function UploadForm( {isLoaded} ) {
 
   const [title, setTitle] = useState("");
   const [game, setGame] = useState("");
   const [genre, setGenre] = useState("");
   const [songmp3, setsongmp3] = useState(null);
+
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -22,13 +24,14 @@ export default function UploadForm() {
       game,
       songmp3,
     };
-    const newSong = dispatch(createSong(song));
+    dispatch(createSong(song));
     history.push(`/library`);
   };
 
   return (
-    <div class="mainscreen">
-    <div class="card">
+    <div className="mainscreen">
+      <div className="card">
+      <Navigation isLoaded={isLoaded} />
       <div class="leftside">
         <img src={image} class="image"/>
       </div>

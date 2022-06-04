@@ -7,7 +7,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import UploadForm from "./components/UploadFormPage/UploadFormPage";
 import Splash from "./components/Splash/splash";
 import Navigation from "./components/Navigation";
-import SongPage from "./components/AllSongs/AllSongs";
+import SongPage from "./components/SongPage/SongPage";
 import AllSongs from "./components/AllSongs/AllSongs";
 
 function App() {
@@ -28,8 +28,11 @@ function App() {
           <Route exact path="/upload">
             <UploadForm />
           </Route>
-          <Route exact path="/splash">
+          {/* <Route exact path="/splash">
             <Splash />
+          </Route> */}
+          <Route path="/songs/:songId">
+            <SongPage />
           </Route>
           <Route exact path="/songs">
             <AllSongs />

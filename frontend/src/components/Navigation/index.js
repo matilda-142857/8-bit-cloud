@@ -46,7 +46,7 @@ return (
             <NavLink id="homeBtn" exact to="/dashboard">
               8BITCLOUD
             </NavLink>
-            <NavLink id="nav-home" exact to="/dashboard">
+            <NavLink id="nav-home" exact to="/songs">
               Home
             </NavLink>
             <NavLink id="nav-library" exact to="/library">

@@ -1,0 +1,119 @@
+body {
+    font-family: 'Lato', sans-serif!important;
+	margin:0;
+	padding:0;
+	box-sizing: border-box;
+}
+
+.mainscreen{
+	height: 100%;
+	width: 100%;
+	display: flexbox;
+    flex-direction: column;
+    background-color: #DFDBE5;
+    color:#963E7B;
+}
+
+.card {
+	width: 71.6rem;
+    margin: auto;
+    background: white;
+    position:center;
+    align-self: center;
+    top: 60rem;
+    height: 100%;
+    border-radius: 1.5rem;
+    box-shadow: 4px 3px 20px #3535358c;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+}
+  .header {
+    position: absolute;
+    justify-self: center;
+    top: 40px;
+    padding: 20px;
+  }
+  
+  .discover-songs {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 900px;
+    overflow: none;
+  }
+  
+  .discover-tracks-container {
+   display: flex;
+   justify-content: center;
+    position: relative;
+    top: 150px;
+    height: 100%;
+    width: 900px;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  .discover-cover-container {
+    height: 250px;
+    width: 250px;
+    padding-top: 20px;
+    margin-left: 25px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* border-radius: 5px;
+    border: 3px solid black; */
+    background-color: transparent;
+    cursor: pointer;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #8585858c;
+  }
+
+  .discover-cover-container:hover .overlay{
+    opacity: 1;
+  }
+  
+  .songimages {
+    height: 190px;
+    width: 190px;
+    margin: 20px;
+    /* border: 1px solid #15883e; */
+  }
+  
+  .songtitles {
+    color: rgb(42, 134, 255);
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .discover-cover-artist {
+    margin-top: 10px;
+    color: whitesmoke;
+    text-decoration: none;
+    font-size: 18px;
+  }
+  
+  #top-discover {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
