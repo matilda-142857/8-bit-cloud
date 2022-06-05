@@ -1,5 +1,5 @@
 #song-show-page {
-    width: 98.8%;
+    width: 93.2%;
     height: auto;
     margin: 0 auto;
     margin-top: 46px;
@@ -65,15 +65,15 @@
   #song-banner-artist {
     display: inline-block;
     font-size: 15px;
-    margin-top: 200px;
+    margin-top: 80px;
     padding: 6px 6px 5px 6px;
     border-radius: 5px;
-    color: white;
+    color: #963e7b;
+    font-size: 25px;
   }
   
-  
   #song-banner-bottom {
-    margin-top: 3px;
+    margin-top: 170px;
     display: flex;
     justify-content: space-between;
     align-items: center;

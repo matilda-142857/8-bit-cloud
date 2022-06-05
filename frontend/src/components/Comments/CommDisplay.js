@@ -1,18 +1,26 @@
 import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import './comments.css'
 import CommentForm from './CommEdit';
+import { getAllUsers } from '../../store/users';
 
 const CommentDisplay = ({ comment, song }) => {
-    const allUsers = useSelector(state => state.session.user)
-    console.log(allUsers)
-    const commentUser = allUsers[comment.userId]
 
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getAllUsers())
+    }, [dispatch]);
+
+    const allUsers = useSelector(state => state.users)
+    const commentUser = allUsers[comment.userId]
     const currentUser = useSelector(state => state.session.user)
     const [editFormOpen, setEditFormOpen] = useState(false)
 
-    useEffect(()=> {},[comment])
+    console.log(allUsers, commentUser, currentUser)
 
+    // useEffect(()=> {},[comment])
+
+    //return stuff renders PER user
     return (
         <div className='comment-container'>
             {commentUser && <p className='comment-username'>{commentUser.username}</p>}

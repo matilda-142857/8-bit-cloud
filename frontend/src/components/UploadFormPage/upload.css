@@ -16,7 +16,7 @@ body {
     margin-top: 6%;
 }
 
-.card {
+.uploadcard {
 	width: 60rem;
     background: rgb(255, 255, 255);
     position:center;
@@ -25,7 +25,7 @@ body {
     box-shadow: 4px 3px 20px #3535358c;
     display:flex;
     flex-direction: row;
-    margin-top: 90px;
+    margin-top: 40px;
 }
 
 .leftside {

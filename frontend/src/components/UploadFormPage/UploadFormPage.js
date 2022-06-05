@@ -45,7 +45,7 @@ const UploadForm = ({isLoaded}) => {
 
   return (
     <div className="mainscreen">
-      <div className="card">
+      <div className="uploadcard">
       <Navigation isLoaded={isLoaded} />
       <div className="leftside">
         <img src={image} className="image"/>
@@ -107,7 +107,7 @@ const UploadForm = ({isLoaded}) => {
               <option value="5" >MOBAS</option>
               <option value="6" >Party Games</option>
           </select>
-          
+
             <p> </p>
             <label>Audio Link</label>
             <p> </p>

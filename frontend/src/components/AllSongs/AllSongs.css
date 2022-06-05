@@ -15,23 +15,25 @@ body {
 }
 
 .card {
-	width: 71.6rem;
+    height: fit-content;
+	width: 67.6rem;
+    /* width: 71.6rem; */
     margin: auto;
     background: white;
     position:center;
     align-self: center;
     top: 60rem;
-    height: 100%;
     border-radius: 1.5rem;
     box-shadow: 4px 3px 20px #3535358c;
     display:flex;
     flex-direction: row;
     justify-content: center;
+    padding-bottom: 200px;
 }
   .header {
     position: absolute;
     justify-self: center;
-    top: 40px;
+    top: 70px;
     padding: 20px;
   }
   
@@ -72,36 +74,36 @@ body {
   }
   
   .overlay {
-    position: absolute;
+    /* position: absolute; */
+    height: 200px;
+    width: 200px;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 100%;
-    width: 100%;
     opacity: 0;
     transition: .5s ease;
-    background-color: #8585858c;
+    background-color: #008CBA;
+    z-index: 100;
   }
-
-  .discover-cover-container:hover .overlay{
+/* 
+  #top-discover:hover .overlay{
     opacity: 1;
   }
-  
+   */
   .songimages {
-    height: 190px;
-    width: 190px;
+    height: 200px;
+    width: 200px;
     margin: 20px;
-    /* border: 1px solid #15883e; */
+    border: 1px solid #8e8e8e;
   }
-  
+
   .songtitles {
     color: rgb(42, 134, 255);
     font-size: 20px;
-    position: absolute;
-    top: 50%;
+    position: relative;
+    top: 100%;
     left: 50%;
-    transform: translate(-50%, -50%);
     text-align: center;
   }
 

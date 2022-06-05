@@ -70,6 +70,8 @@ export default function SongPage({ isLoaded }) {
               <div id="song-comments">
                 <div id="song-comments-container"></div>
                 <div id="song-desc-and-comments">
+                {thisComments.length < 1 && <h2>No Comments Yet</h2>}
+                {thisComments.length >= 1 && <h2>Comments for {song.title}:</h2>}
                   {thisComments &&
                     thisComments.length > 0 &&
                     thisComments.map((comment) => (

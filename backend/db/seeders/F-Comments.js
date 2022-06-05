@@ -25,6 +25,27 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
+      {
+        comment: `we stan Mortis Ghost`,
+        songId: 15,
+        userId: 2,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        comment: `sans.exe lol`,
+        songId: 13,
+        userId: 2,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        comment: `sephiroth vibes tbh`,
+        songId: 2,
+        userId: 2,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
     ], {});
 
   },
