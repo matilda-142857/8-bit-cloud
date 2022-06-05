@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { createSong } from "../../store/songs";
 import { useDispatch, useSelector } from "react-redux";
 import Navigation from "../Navigation";
@@ -6,36 +6,51 @@ import { useHistory } from "react-router-dom";
 import image from '../UploadFormPage/image.png';
 import "./upload.css";
 
-export default function UploadForm( {isLoaded} ) {
+const UploadForm = ({isLoaded}) => {
 
+  const sessionUser = useSelector((state) => state.session.user);
   const [title, setTitle] = useState("");
-  const [game, setGame] = useState("");
-  const [genre, setGenre] = useState("");
+  const [gameId, setGameId] = useState("13");
+  const [genreId, setGenreId] = useState(1);
   const [songmp3, setsongmp3] = useState(null);
-
-  const dispatch = useDispatch();
+ 
+  const [errors, setErrors] = useState([]);
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  useEffect(()=> {
+      if(!sessionUser){
+          history.push('/')
+      }
+  },[history, sessionUser])
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const uploaderId = sessionUser.id;
     const song = {
       title,
-      genre,
-      game,
+      genreId,
+      uploaderId,
+      gameId,
       songmp3,
     };
-    dispatch(createSong(song));
-    history.push(`/library`);
-  };
+    dispatch(createSong(song))
+    .then(() => history.push('/library'))
+    .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+    })
+}
 
   return (
     <div className="mainscreen">
       <div className="card">
       <Navigation isLoaded={isLoaded} />
-      <div class="leftside">
-        <img src={image} class="image"/>
+      <div className="leftside">
+        <img src={image} className="image"/>
       </div>
-      <div class="rightside">
+      <div className="rightside">
         <form onSubmit={handleSubmit}>
           <h2>Add a Track</h2>
           <p>Track Title</p>
@@ -44,32 +59,45 @@ export default function UploadForm( {isLoaded} ) {
               placeholder="Title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              class="inputbox"
+              className="inputbox"
               required
           />
           <p>Associated Game</p>
+          <select
+              type="text"
+              placeholder="Game"
+              value={gameId}
+              onChange={(e) => setGameId(e.target.value)}
+              className="inputbox"
+              required>
+              <option value="13" >Game not Listed</option>
+              <option value="1" >Final Fantasy X</option>
+              <option value="2" >Elden Ring</option>
+              <option value="3" >Don't Starve</option>
+              <option value="4" >Heroes Of Might And Magic IV</option>
+              <option value="5" >DOTA 2</option>
+              <option value="6" >Kahoot</option>
+              <option value="7" >Hollow Knight</option>
+              <option value="8" >Fibbage 3</option>
+              <option value="9" >Ori and the Blind Forest</option>
+              <option value="10" >Undertale</option>
+              <option value="11" >Kingdom Hearts</option>
+              <option value="12" >OFF</option>
+            </select>
+          {/* <p>Don't see the game you're looking for? Add it here:</p>
           <input
               type="text"
               placeholder="Game"
               value={game}
               onChange={(e) => setGame(e.target.value)}
-              class="inputbox"
+              className="inputbox"
               required
-          />
-          <p>Don't see the game you're looking for? Add it here:</p>
-          <input
-              type="text"
-              placeholder="Game"
-              value={game}
-              onChange={(e) => setGame(e.target.value)}
-              class="inputbox"
-              required
-          />
+          /> */}
           <p>Genre</p>
           <select
             placeholder="Genre"
-            value={genre}
-            onChange={(e) => setGenre(e.target.value)}
+            value={genreId}
+            onChange={(e) => setGenreId(e.target.value)}
             className="inputbox"
             required>
               <option value="1" >Action/Adventure</option>
@@ -79,10 +107,14 @@ export default function UploadForm( {isLoaded} ) {
               <option value="5" >MOBAS</option>
               <option value="6" >Party Games</option>
           </select>
-            <label>Audio File</label>
+          
+            <p> </p>
+            <label>Audio Link</label>
+            <p> </p>
             <input
             type="text"
-            placeholder="Audio/MP3"
+            placeholder="Link to an audio file"
+            className="inputbox"
             onChange={(e) => setsongmp3(e.target.value)}
             required
             />
@@ -95,7 +127,7 @@ export default function UploadForm( {isLoaded} ) {
               required
             /> */}
           <p></p>
-          <button type="submit" class="button">Submit</button>
+          <button type="submit" className="button">Submit</button>
         </form>
       </div>
     </div>
@@ -103,3 +135,4 @@ export default function UploadForm( {isLoaded} ) {
   );
 }
 
+export default UploadForm

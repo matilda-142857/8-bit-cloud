@@ -63,7 +63,7 @@ return (
             </NavLink>
             <div id="nav-profile">
               {isLoaded && sessionLinks}
-              {/* {sessionUser?.username} */}
+              {sessionUser?.username}
             </div>
           </div>
         </nav>

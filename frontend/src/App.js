@@ -3,9 +3,8 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 
-import SignupFormPage from "./components/SignupFormPage";
 import UploadForm from "./components/UploadFormPage/UploadFormPage";
-import Splash from "./components/Splash/splash";
+// import Splash from "./components/Splash/splash";
 import Navigation from "./components/Navigation";
 import SongPage from "./components/SongPage/SongPage";
 import AllSongs from "./components/AllSongs/AllSongs";

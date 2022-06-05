@@ -3,14 +3,6 @@ import { csrfFetch } from './csrf';
 const GET_ALL_SONGS = "song/GET";
 const ADD_SONG = "song/ADD";
 const DELETE_SONG= "song/DELETE"
-// const GET_ONE_SONG = "song/GET";
-
-// const getOneSong = (song) => {
-//   return {
-//     type: GET_ONE_SONG,
-//     song
-//   };
-// };
 
 const actionAllSongs = songs => {
   return {
@@ -63,27 +55,27 @@ export const getSongsUser = () => async (dispatch) => {
 
 export const createSong = (newSong) => async (dispatch) => {
 
-  const { title, gameId, uploaderId, genreId, playlistId, songmp3 } = newSong;
+  const { title, gameId, uploaderId, genreId, songmp3 } = newSong;
   console.log(newSong);
-  const formData = new FormData();
-  formData.append("title", title);
-  formData.append("gameId", gameId);
-  if (uploaderId) {
-    formData.append("uploaderId", uploaderId);
-  }
-  formData.append("genreId", genreId);
-  if (playlistId){
-    formData.append("playlistId", playlistId);
-  }
-
-  formData.append("songmp3", songmp3);
+  // const formData = new FormData();
+  // formData.append("title", title);
+  // formData.append("gameId", gameId);
+  // if (uploaderId) {
+  //   formData.append("uploaderId", uploaderId);
+  // };
+  // formData.append("genreId", genreId);
+  // formData.append("songmp3", songmp3);
 
   const response = await csrfFetch(`/api/songs/upload`, {
     method: "POST",
+    // headers: {
+    //   "Content-Type": "multipart/formData",
+    // },
     headers: {
-      "Content-Type": "multipart/form-data",
+      "Content-Type": "application/json",
     },
-    body: formData,
+    // body: formData,
+    body: JSON.stringify(newSong),
   });
 
   const song = await response.json();
@@ -106,7 +98,7 @@ export const updateSong = (song) => async(dispatch)=>{
   const response = await csrfFetch(`/api/songs`, {
     method: "PUT",
     headers: {
-      "Content-Type": "multipart/form-data",
+      "Content-Type": "application/json",
     },
     body: formData,
   });

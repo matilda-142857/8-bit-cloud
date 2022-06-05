@@ -1,5 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
+import commentReducer from "./commentss";
 import sessionReducer from './session';
 import songReducer from "./songs";
 
@@ -9,7 +10,8 @@ const configureStore = (preloadedState) => {
 
 const rootReducer = combineReducers({
     session: sessionReducer,
-    songs: songReducer
+    songs: songReducer,
+    comments: commentReducer
 });
 
 let enhancer;

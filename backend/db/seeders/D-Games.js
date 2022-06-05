@@ -41,7 +41,7 @@ module.exports = {
         updatedAt: new Date() 
       },
       { title: 'Hollow Knight', 
-        img_url: "https://static.wikia.nocookie.net/hollowknight/images/1/12/Mainpromo13.png/revision/latest?cb=20210112203001", 
+        img_url: "https://i.scdn.co/image/ab67616d0000b273164ec11a1225d579ed030c42", 
         userId: 1,
         createdAt: new Date(), 
         updatedAt: new Date() 
@@ -71,11 +71,17 @@ module.exports = {
         updatedAt: new Date() 
       },
       { title: 'OFF', 
-        img_url: "https://static.wikia.nocookie.net/offgame/images/8/81/Off-soundtrack.jpg/revision/latest?cb=20121223002501", 
+        img_url: "https://i1.sndcdn.com/avatars-000058249476-zu2fst-t500x500.jpg", 
         userId: 1,
         createdAt: new Date(), 
         updatedAt: new Date() 
       },
+      { title: 'Game not listed', 
+      img_url: 'https://cdn1.iconfinder.com/data/icons/edm-malibu-vol-2/128/video-game-music-512.png',
+      userId: 1,
+      createdAt: new Date(), 
+      updatedAt: new Date() 
+    },
     ], {});
   },
 

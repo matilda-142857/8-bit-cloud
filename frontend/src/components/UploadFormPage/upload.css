@@ -2,6 +2,7 @@ body {
     font-family: 'Lato', sans-serif!important;
 	margin:0;
 	padding:0;
+    background-color: #DFDBE5;
 	/* box-sizing: border-box; */
 }
 
@@ -12,11 +13,11 @@ body {
     flex-direction: column;
     background-color: #DFDBE5;
     color:#963E7B;
-    margin-top: 5%;
+    margin-top: 6%;
 }
 
 .card {
-	width: 50rem;
+	width: 60rem;
     background: rgb(255, 255, 255);
     position:center;
     align-self: center;
@@ -24,11 +25,12 @@ body {
     box-shadow: 4px 3px 20px #3535358c;
     display:flex;
     flex-direction: row;
+    margin-top: 90px;
 }
 
 .leftside {
 	background: #030303;
-	width: 25rem;
+	width: 35rem;
 	display: inline-flex;
     align-items: center;
     justify-content: center;

@@ -5,21 +5,21 @@ module.exports = {
    
       return queryInterface.bulkInsert('Comments', [
       {
-        content: `In case you didn't know, she is Malenia, Blade of Miquella, and she has never known defeat`,
+        comment: `In case you didn't know, she is Malenia, Blade of Miquella, and she has never known defeat`,
         songId: 2,
         userId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        content: `Heroes IV is so bad but at least the soundtrack is good`,
+        comment: `Heroes IV is so bad but at least the soundtrack is good`,
         songId: 4,
         userId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        content: `The Japanglish is aggressive with Kingdom Hearts songs but man does it sound good`,
+        comment: `The Japanglish is aggressive with Kingdom Hearts songs but man does Utada kill it`,
         songId: 14,
         userId: 1,
         createdAt: new Date(),

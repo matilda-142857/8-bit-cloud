@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { updateComment } from "../../../store/comments";
 
-export default function CommentForm({ songId, user, msg, setEditComForm }) {
+export default function EditCommentForm({ songId, user, msg, setEditComForm }) {
   const dispatch = useDispatch();
   const [comment, setComment] = useState("");
 

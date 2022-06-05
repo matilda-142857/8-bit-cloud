@@ -2,7 +2,7 @@ const express = require('express')
 const asyncHandler = require('express-async-handler');
 
 const { requireAuth, restoreUser} = require('../../utils/auth');
-const { User, Song, Game } = require('../../db/models');
+const { User, Song, Game, Genre } = require('../../db/models');
 
 const router = express.Router();
 const { check } = require('express-validator');
@@ -24,7 +24,7 @@ const validateSong = [
     .withMessage('Please pick an appropriate genre for this game.'),
   check('songmp3')
     .exists({ checkFalsy: true })
-    .withMessage('Please provide the audio file as an mp3.'),
+    .withMessage('Please provide the audio file as a link.'),
   handleValidationErrors
 ];
 
@@ -37,7 +37,7 @@ router.get(
   asyncHandler(async(req, res) => {
     const songs = await Song.findAll
     ({
-      include: [Game]
+      include: [Game, Genre]
     })
     res.json(songs);
   })
@@ -55,16 +55,26 @@ router.get(
   })
 )
 
+router.get(
+  '/:songId', restoreUser, asyncHandler(async(req,res)=>{
+  const comments = await Song.findAll({
+    include: [User, Game]
+  })
+  res.json(comments)
+  })
+)
+
 //add a song
 router.post(
   '/upload', 
   // validateSong, 
   requireAuth, asyncHandler(async(req,res)=>{
-    const {title, gameId, genre, songmp3} = req.body
+    const {title, gameId, uploaderId, genreId, songmp3} = req.body
     let newSong = await Song.create({
       title,
       gameId,
-      genre,
+      uploaderId,
+      genreId,
       songmp3
     })
     console.log(req.body)
