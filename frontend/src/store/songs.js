@@ -59,51 +59,54 @@ export const getSongsUser = () => async (dispatch) => {
 export const createSong = (newSong) => async (dispatch) => {
 
   const { title, gameId, uploaderId, genreId, songmp3 } = newSong;
-  // const formData = new FormData();
-  // formData.append("title", title);
-  // formData.append("gameId", gameId);
-  // if (uploaderId) {
-  //   formData.append("uploaderId", uploaderId);
-  // };
-  // formData.append("genreId", genreId);
-  // formData.append("songmp3", songmp3);
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("gameId", gameId);
+  if (uploaderId) {
+    formData.append("uploaderId", uploaderId);
+  };
+  formData.append("genreId", genreId);
+
+  if (songmp3) formData.append("songmp3", songmp3);
 
   const response = await csrfFetch(`/api/songs/upload`, {
     method: "POST",
-    // headers: {
-    //   "Content-Type": "multipart/formData",
-    // },
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "multipart/form-data",
     },
-    // body: formData,
-    body: JSON.stringify(newSong),
+    // headers: {
+    //   "Content-Type": "application/json",
+    // },
+    body: formData,
+    // body: JSON.stringify(newSong),
   });
 
   const song = await response.json();
   dispatch(getAllSongs());
-  return song;
+  return response;
 };
 
 export const updateSong = (song) => async(dispatch)=>{
 
   const { id, title, gameId, uploaderId, genreId, playlistId, songmp3 } = song;
 
-  // const formData = new FormData();
-  // formData.append("title", title);
-  // formData.append("gameId", gameId);
-  // formData.append("uploaderId", uploaderId);
-  // formData.append("genreId", genreId);
-  // formData.append("playlistId", playlistId);
-  // formData.append("songmp3", songmp3);
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("gameId", gameId);
+  formData.append("uploaderId", uploaderId);
+  formData.append("genreId", genreId);
+  formData.append("playlistId", playlistId);
   
+  if (songmp3) formData.append("songmp3", songmp3);
+
   const response = await csrfFetch(`/api/songs/${id}`, {
     method: "PUT",
     headers: {
-      "Content-Type": "application/json",
+      // "Content-Type": "application/json",
+      "Content-Type": "multipart/form-data",
     },
-    // body: formData,
-    body: JSON.stringify(song)
+    body: formData,
+    // body: JSON.stringify(song)
   });
   const editedSong = await response.json()
   if (response.ok){

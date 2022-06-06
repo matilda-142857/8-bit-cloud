@@ -24,6 +24,11 @@ const UploadForm = ({isLoaded}) => {
       }
   },[history, sessionUser])
 
+  const updateFile = (e) => {
+    const file = e.target.files[0];
+    if (file) setsongmp3(file);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -35,7 +40,7 @@ const UploadForm = ({isLoaded}) => {
       gameId,
       songmp3,
     };
-    dispatch(createSong(song))
+    return dispatch(createSong(song))
     .then(() => history.push('/library'))
     .catch(async (res) => {
         const data = await res.json();
@@ -111,21 +116,21 @@ const UploadForm = ({isLoaded}) => {
             <p> </p>
             <label>Audio Link</label>
             <p> </p>
-            <input
+            {/* <input
             type="text"
             placeholder="Link to an audio file"
             className="inputbox"
             onChange={(e) => setsongmp3(e.target.value)}
             required
-            />
-            {/* <input
+            /> */}
+            <input
               type="file"
               placeholder="Audio/MP3"
-              onChange={(e) => setsongmp3(e.target.files[0])}
+              onChange={updateFile}
               className="upload__inputs"
               id="audio__input"
               required
-            /> */}
+            />
           <p></p>
           <button type="submit" className="button">Submit</button>
         </form>

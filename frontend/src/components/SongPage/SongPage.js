@@ -7,6 +7,8 @@ import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllSongs } from "../../store/songs";
 import { getSongComments } from "../../store/commentss";
+import ReactJkMusicPlayer from "react-jinke-music-player";
+import "react-jinke-music-player/assets/index.css";
 
 export default function SongPage({ isLoaded }) {
 
@@ -16,6 +18,7 @@ export default function SongPage({ isLoaded }) {
   const song = useSelector((state) => state.songs[songId]);
   const comments = Object.values(useSelector((state) => state.comments));
   const sessionUser = useSelector((state) => state.session.user);
+  const [audioLists, setAudioLists] = useState([]);
 
   const [displayComments, setDisplayComments] = useState(true);
 
@@ -23,6 +26,18 @@ export default function SongPage({ isLoaded }) {
     dispatch(getAllSongs());
     dispatch(getSongComments(songId));
   }, [dispatch]);
+
+  function addToPlayer(){
+    const audioListtemp = [];
+    // playlistsongs.forEach(song => {
+    audioListtemp.push({
+        name: song.title,
+        singer: song.Game.title,
+        musicSrc: song.songmp3
+        // })
+    })
+    setAudioLists(audioListtemp)
+  }
 
   let thisComments = [];
   if (comments && song && comments.length > 0) {
@@ -47,6 +62,7 @@ export default function SongPage({ isLoaded }) {
           <div id="song-page-container">
             <div id="song-show-page">
               <div id="song-banner">
+              <div className="play-button" onClick={addToPlayer}></div>
                 <h1 className="header"> {song.title} </h1>
                 <div id="song-show-play"></div>
 
@@ -61,12 +77,6 @@ export default function SongPage({ isLoaded }) {
                     <div className='button-container'>
                     {sessionUser.id === song.uploaderId && <button onClick={() => handleEdit(song)} className='edit-button'>Edit Song</button>}
                     {sessionUser.id && <button onClick={() => setDisplayComments(!displayComments)} className='edit-button'>Review Song</button>}
-                    </div>
-                    <div id="player-container">
-                      {/* <audio
-                      className="audio-current-song"
-                      src={song?.currentSong.songmp3}
-                    ></audio> */}
                     </div>
                   </div>
                 </div>
@@ -99,7 +109,8 @@ export default function SongPage({ isLoaded }) {
               </div>
             </div>
           </div>
-        </div>
+          <ReactJkMusicPlayer audioLists={audioLists}/>
+        </div> 
       )}
     </div>
   );

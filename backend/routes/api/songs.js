@@ -24,9 +24,9 @@ const validateSong = [
   check('genreId')
     .exists({ checkFalsy: true })
     .withMessage('Please pick an appropriate genre for this game.'),
-  check('songmp3')
-    .exists({ checkFalsy: true })
-    .withMessage('Please provide the audio file as a link.'),
+  // check('songmp3')
+  //   .exists({ checkFalsy: true })
+  //   .withMessage('Please provide the audio file as a link.'),
   handleValidationErrors
 ];
 

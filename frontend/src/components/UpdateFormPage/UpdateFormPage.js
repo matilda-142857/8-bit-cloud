@@ -42,10 +42,14 @@ const UpdateForm = ({isLoaded}) => {
       songmp3,
       playlistId
     };
-
     dispatch(updateSong(editedSong))
     history.push('/songs')
   }
+
+  const updateFile = (e) => {
+    const file = e.target.files[0];
+    if (file) setsongmp3(file);
+  };
 
   const handleDelete = (e, song) => {
     e.preventDefault()
@@ -126,21 +130,20 @@ const UpdateForm = ({isLoaded}) => {
             <p> </p>
             <label>Audio Link</label>
             <p> </p>
-            <input
+            {/* <input
             type="text"
             placeholder="Link to an audio file"
             className="inputbox"
-            onChange={(e) => setsongmp3(e.target.value)}
+            required
+            /> */}
+            <input
+            type="file"
+            placeholder="Audio/MP3"
+            onChange={updateFile}
+            className="upload__inputs"
+            id="audio__input"
             required
             />
-            {/* <input
-              type="file"
-              placeholder="Audio/MP3"
-              onChange={(e) => setsongmp3(e.target.files[0])}
-              className="upload__inputs"
-              id="audio__input"
-              required
-            /> */}
           <p></p>
           <button type="submit" className="button">Submit</button>
           <button type="submit" className="button" onClick={(e) => handleDelete(e, editSong)}>Delete Song</button>

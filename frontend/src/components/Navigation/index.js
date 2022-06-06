@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
@@ -7,8 +7,6 @@ import SignupFormModal from '../SignupFormPage';
 import './Navigation.css';
 import logo from '../Navigation/cloudlogo.png';
 import ReactDOM from "react-dom";
-import ReactJkMusicPlayer from "react-jinke-music-player";
-import "react-jinke-music-player/assets/index.css";
 
 import * as sessionActions from '../../store/session';
 
@@ -16,6 +14,7 @@ function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch;
   const history = useHistory;
+  const [audioLists, setAudioLists] = useState([]);
 
   let sessionLinks;
   if (sessionUser) {
@@ -31,6 +30,8 @@ function Navigation({ isLoaded }){
       </>
     );
   }
+
+
 
 //   return (
 //     <ul>
@@ -69,7 +70,7 @@ return (
               {isLoaded && sessionLinks}
               {sessionUser?.username}
             </div>
-            <ReactJkMusicPlayer/>
+            {/* <ReactJkMusicPlayer/> */}
           </div>
         </nav>
       </div>
