@@ -31,9 +31,9 @@ const CommentForm = ({ song, setEditFormOpen }) => {
     }
 
     return (
-        <div className='review-form-container'>
-            <p className='review-header'>Edit Your Comment:</p>
-            <form className='review-form'>
+        <div className='comment-form-container'>
+            <p className='commet-header'>Write a comment:</p>
+            <form className='comment-form'>
                 {errors.length > 0 &&
                     <ul>
                         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
@@ -43,7 +43,7 @@ const CommentForm = ({ song, setEditFormOpen }) => {
                 <textarea onChange={e => setComment(e.target.value)} id='comment-input' type='text' placeholder='Write a comment...' value={comment}></textarea>
 
                 <div id='review-button-holder'>
-                    <button id='submit-comment-button' onClick={e => handleSubmit(e)}>Submit Edit</button>
+                    <button id='submit-comment-button' onClick={e => handleSubmit(e)}>Submit Comment</button>
                     <button id='submit-comment-button' onClick={e => handleCancel(e)}>Cancel</button>
                 </div>
             </form>

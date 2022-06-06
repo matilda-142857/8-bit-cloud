@@ -1,34 +1,49 @@
 import React, { useState, useEffect } from "react";
 import Navigation from "../Navigation";
 import CommDisplay from "../Comments/CommDisplay";
-// import CommEdit from "../Comments/CommEdit";
 import CommForm from "../Comments/CommForm";
 import "./SongPage.css";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllSongs } from "../../store/songs";
 import { getSongComments } from "../../store/commentss";
-import { Redirect } from "react-router-dom";
 
 export default function SongPage({ isLoaded }) {
+
   const dispatch = useDispatch();
-  const {songId} = useParams();
+  const history = useHistory();
+  const songId = useParams().songId;
+  const song = useSelector((state) => state.songs[songId]);
+  const comments = Object.values(useSelector((state) => state.comments));
+  const sessionUser = useSelector((state) => state.session.user);
+
   const [displayComments, setDisplayComments] = useState(false);
+//   const dispatch = useDispatch();
+//   const { songId } = useParams();
+//   const [displayComments, setDisplayComments] = useState(false);
+//   const history = useHistory();
+//   const song = useSelector((state) => state.songs[songId]);
+//   const comments = Object.values(useSelector((state) => state.comments));
+//   const sessionUser = useSelector((state) => state.session.user);
 
   useEffect(() => {
     dispatch(getAllSongs());
     dispatch(getSongComments(songId));
   }, [dispatch]);
 
-  const song = useSelector((state) => state.songs[songId]);
-  const comments = Object.values(useSelector((state) => state.comments));
-  const user = useSelector((state) => state.session.user);
-
   let thisComments = [];
   if (comments && song && comments.length > 0) {
     thisComments = comments.filter((comment) => {
       return comment.songId === song.id;
     });
+  }
+
+  if (!sessionUser) {
+    sessionUser = { id: 0 }
+  }
+
+  const handleEdit = song => {
+    history.push(`/song/edit/${song.id}`)
   }
 
   return (
@@ -50,6 +65,10 @@ export default function SongPage({ isLoaded }) {
 
                   <div id="song-banner-bottom">
                     <h2 id="song-banner-title">Category: {song.Genre.type}</h2>
+                <div className='button-container'>
+                {sessionUser.id === song.userId && <button onClick={() => handleEdit(song)} className='edit-button'>Edit Song</button>}
+                {sessionUser.id && <button onClick={() => setDisplayComments(!displayComments)} className='edit-button'>Review Song</button>}
+              </div>
                     <div id="player-container">
                       {/* <audio
                       className="audio-current-song"
@@ -70,8 +89,10 @@ export default function SongPage({ isLoaded }) {
               <div id="song-comments">
                 <div id="song-comments-container"></div>
                 <div id="song-desc-and-comments">
-                {thisComments.length < 1 && <h2>No Comments Yet</h2>}
-                {thisComments.length >= 1 && <h2>Comments for {song.title}:</h2>}
+                  {thisComments.length < 1 && <h2>No Comments Yet</h2>}
+                  {thisComments.length >= 1 && (
+                    <h2>Comments for {song.title}:</h2>
+                  )}
                   {thisComments &&
                     thisComments.length > 0 &&
                     thisComments.map((comment) => (
