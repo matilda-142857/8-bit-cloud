@@ -6,7 +6,7 @@ import logo from '../Navigation/cloudlogo.png';
 
     <div class="carousel-wrapper">
       <img id="imgLogo" src={logo} />
-      <h1 id="textlogo">8BITCLOUD</h1>
+      {/* <h1 id="textlogo">8BITCLOUD</h1> */}
     <span id="item-1"></span>
     <span id="item-2"></span>
     <span id="item-3"></span>

@@ -1,0 +1,35 @@
+<h1 align='center'>EightBitCloud</h1>
+
+<h3>An app to help you explore the world of video game music!</h3>
+
+<p align=center>Eightbitcloud is a Soundcloud clone that includes the functionality to create, comment upon, and listen to songs.</p>
+
+<p align=center><a href='https://eightbitcloud.herokuapp.com/'>Here's a Live Link</a></p>
+
+  ## About
+  
+ EightbitCloud is a full stack application that allows users to create and comment on video game tracks categorized by both game and genre in order to expose more users to video game music as well as create a repository for video game music.
+  
+  ### Downloading the App
+  1. Clone this repository
+  
+  2. Install all packages in both the frontend and backend folders `npm install`
+  
+  3. Create a new .env file in the backend to access the database.  Follow the example .env in the backend. 
+  
+  4. Setup a PSQL user to match your .env file.
+  
+  5. Migrate and seed the database using the following script in the backend `npm run reset`
+  
+  6. Run `npm start` in both the backend and front end folders. 
+  
+  7. Navigate your browser to `localhost:3000`
+  
+  ### Technologies used
+  React.js
+  Redux
+  Express
+  Sequelize
+  PSQL
+
+  
