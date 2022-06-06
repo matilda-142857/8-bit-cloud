@@ -1,3 +1,5 @@
+const { singlePublicFileUpload, singleMulterUpload }= require ('../../awsS3')
+
 const express = require('express')
 const asyncHandler = require('express-async-handler');
 
@@ -19,7 +21,7 @@ const validateSong = [
     .withMessage('Please provide the game associated with this track.')
     .isLength({max: 50})
     .withMessage('Track name must not be more than 50 characters.'),
-  check('genre')
+  check('genreId')
     .exists({ checkFalsy: true })
     .withMessage('Please pick an appropriate genre for this game.'),
   check('songmp3')
@@ -29,7 +31,6 @@ const validateSong = [
 ];
 
 //discover page
-
 
 //get all songs
 router.get(
@@ -67,9 +68,11 @@ router.get(
 //add a song
 router.post(
   '/upload', 
-  // validateSong, 
+  singleMulterUpload("songmp3"),
+  validateSong, 
   requireAuth, asyncHandler(async(req,res)=>{
-    const {title, gameId, uploaderId, genreId, songmp3} = req.body
+    const {title, gameId, uploaderId, genreId} = req.body
+    const songmp3 = await singlePublicFileUpload(req.file)
     let newSong = await Song.create({
       title,
       gameId,
@@ -100,18 +103,18 @@ router.get(
   })
 );
 
-
 //edit single song
+
 router.put(
   '/:songId', 
+  singleMulterUpload("songmp3"),
   validateSong, requireAuth, asyncHandler(async(req,res)=>{
-    const {title, gameId, genre, songmp3} = req.body
+    const {title, gameId, genreId, songmp3} = req.body;
     const songId = parseInt(req.params.songId, 10);
     const editSong = await Song.findByPk(songId)
     let editedSong = await editSong.update({
-      title, gameId, genre, songmp3
+      title, gameId, genreId, songmp3
     })
-
     return res.json(editedSong)
   })
 )
