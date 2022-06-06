@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+
+/* #imgLogo {
+  width: 10%;
+  height: 10%;
+  align-items: center;
+  background-color: transparent;
+  position: relative;
+  left: 26px;
+  top: 16px;
+  z-index: 10;
+} */
+
+/* #textlogo {
+  font-family: 'Lato';
+  color: whitesmoke;
+  position: absolute;
+  padding-left: 16px;
+  z-index: 11;
+  letter-spacing: 2px;
+  font-size: 25px;
+} */
+
+#text1{
+  margin-left: 35%;
+  margin-top: 20%;
+  z-index: 10;
+  font-family: 'Lato';
+  color: rgb(20, 44, 66);
+}
+#text2{
+  margin-left: 35%;
+  margin-top: 20%;
+  z-index: 10;
+  font-family: 'Lato';
+  color: rgb(33, 20, 41);
+}
+#text3{
+  margin-left: 35%;
+  margin-top: 20%;
+  z-index: 10;
+  font-family: 'Lato';
+  color: whitesmoke;
+}
+
+.carousel-wrapper{
+  height:600px;
+  width:75%;
+  position:fixed;
+  left: 10%;
+  top:90px;
+  border: 2px black;
+}
+.carousel-item{
+  position:absolute;
+  width: 100%;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  padding:25px 50px;
+  opacity:0;
+  transition: all 0.5s ease-in-out;
+
+}
+.arrow{
+  border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 12px;
+}
+
+.arrow-prev{
+  left:-30px;
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%) rotate(135deg);
+}
+ 
+.arrow-next{
+    right:-30px;
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%) rotate(-45deg);
+  }
+
+.light{
+  color:white;
+}
+
+@media (max-width: 480px) {
+      .arrow, .light .arrow {
+        background-size: 10px;
+        background-position: 10px 50%;
+      }
+    }
+
+/*Select every element*/
+[id^="item"] {
+    display: none;
+  }
+.item-1 {
+    z-index: 2;
+    opacity: 1;
+  background:url('../SplashHeader/splash-1.jpg');
+  background-size:cover;
+  }
+.item-2{
+  background:url('../SplashHeader/splash-2.jpg');
+   background-size:cover;
+}
+.item-3{
+  background:url('../SplashHeader/splash-3.jpg');
+   background-size:cover;
+}
+
+*:target ~ .item-1 {
+    opacity: 0;
+  }
+
+#item-1:target ~ .item-1 {
+    opacity: 1;
+  }
+
+#item-2:target ~ .item-2, #item-3:target ~ .item-3 {
+    z-index: 3;
+    opacity: 1;
+  }

@@ -41,7 +41,7 @@ const UploadForm = ({isLoaded}) => {
       songmp3,
     };
     return dispatch(createSong(song))
-    .then(() => history.push('/library'))
+    .then(() => history.push('/songs'))
     .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
@@ -51,7 +51,7 @@ const UploadForm = ({isLoaded}) => {
   return (
     <div className="mainscreen">
       <div className="uploadcard">
-      <Navigation isLoaded={isLoaded} />
+      {/* <Navigation isLoaded={isLoaded} /> */}
       <div className="leftside">
         <img src={image} className="image"/>
       </div>

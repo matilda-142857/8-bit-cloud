@@ -13,7 +13,7 @@ export default function LoginForm() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) return <Redirect to="/dashboard" />;
+  if (sessionUser) return <Redirect to="/songs" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,12 +24,12 @@ export default function LoginForm() {
         if (data && data.errors) setErrors(data.errors);
       }
     );
-    if (!errors) history.push("/dashboard");
+    if (!errors) history.push("/songs");
   };
 
   const demoSubmit = (e) => {
     e.preventDefault();
-    history.push("/dashboard");
+    history.push("/songs");
     return dispatch(sessionActions.demoLogin());
   };
 

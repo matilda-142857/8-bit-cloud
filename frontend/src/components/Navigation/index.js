@@ -48,7 +48,7 @@ return (
         <nav id="nav">
           <div id="logo">
             <img id="imgLogo" src={logo} />
-            <NavLink id="homeBtn" exact to="/dashboard">
+            <NavLink id="homeBtn" exact to="/songs">
               8BITCLOUD
             </NavLink>
             <NavLink id="nav-home" exact to="/songs">

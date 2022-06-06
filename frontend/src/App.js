@@ -6,7 +6,7 @@ import * as sessionActions from "./store/session";
 import UploadForm from "./components/UploadFormPage/UploadFormPage";
 import UpdateForm from "./components/UpdateFormPage/UpdateFormPage";
 import AboutMe from "./components/About/about";
-// import Splash from "./components/Splash/splash";
+import SplashPage from "./components/Splash/splashpage";
 import Navigation from "./components/Navigation";
 import SongPage from "./components/SongPage/SongPage";
 import AllSongs from "./components/AllSongs/AllSongs";
@@ -23,15 +23,18 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+           <Route exact path="/">
+            <SplashPage />
+          </Route>
           <Route exact path="/about">
             <AboutMe />
           </Route>
           <Route exact path="/upload">
             <UploadForm />
           </Route>
-          {/* <Route exact path="/splash">
-            <Splash />
-          </Route> */}
+          <Route exact path="/splash">
+            <SplashPage />
+          </Route>
           <Route exact path='/song/edit/:songId'>
             <UpdateForm />
           </Route>
