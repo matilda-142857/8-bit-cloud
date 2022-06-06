@@ -3,6 +3,7 @@ import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import "./LoginForm.css";
+import "../../context/fonts.css";
 
 export default function LoginForm() {
   const dispatch = useDispatch();
@@ -34,14 +35,10 @@ export default function LoginForm() {
 
   return (
     <div className="login-container">
-
         <div id="login-title">Welcome back!</div>
-
     <form onSubmit={handleSubmit}>
       <ul>
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
-        ))}
+        {errors.map((error, idx) => (<li key={idx}>{error}</li>))}
       </ul>
       {/* <label> Username or Email */}
         <input

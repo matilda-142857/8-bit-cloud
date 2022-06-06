@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
+
+import UploadForm from "./components/UploadFormPage/UploadFormPage";
+// import Splash from "./components/Splash/splash";
 import Navigation from "./components/Navigation";
+import SongPage from "./components/SongPage/SongPage";
+import AllSongs from "./components/AllSongs/AllSongs";
 
 function App() {
   const dispatch = useDispatch();
@@ -14,14 +18,26 @@ function App() {
 
   return (
     <>
-    <h1>
-      Testing
-    </h1>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/signup">
+          {/* <Route exact path="/signup">
             <SignupFormPage />
+          </Route> */}
+          <Route exact path="/upload">
+            <UploadForm />
+          </Route>
+          {/* <Route exact path="/splash">
+            <Splash />
+          </Route> */}
+          <Route path="/songs/:songId">
+            <SongPage />
+          </Route>
+          <Route exact path="/songs">
+            <AllSongs />
+          </Route>
+          <Route path="/songs/:songId">
+            <SongPage isLoaded={isLoaded} />
           </Route>
         </Switch>
       )}

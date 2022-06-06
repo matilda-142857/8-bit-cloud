@@ -5,6 +5,7 @@ const csurf = require('csurf');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const { ValidationError } = require('sequelize');
+const bodyParser= require('body-parser')
 
 const { environment } = require('./config');
 const isProduction = environment === 'production';
@@ -13,6 +14,7 @@ const app = express();
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: false }))
 
 const routes = require('./routes');
 
@@ -30,6 +32,7 @@ if (!isProduction) {
   );
   
   // Set the _csrf token and create req.csrfToken method
+  // Security checker
   app.use(
     csurf({
       cookie: {

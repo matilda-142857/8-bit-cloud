@@ -1,0 +1,154 @@
+#song-show-page {
+    width: 93.2%;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 46px;
+  }
+  
+  #song-show-page a {
+    text-decoration: none;
+  }
+  
+  #song-banner {
+    display: flex;
+    height: 380px;
+    background: linear-gradient(to bottom right, rgb(255, 255, 255), rgb(0, 162, 255));
+  }
+
+  .header{
+    margin-top: 70px;
+    margin-left: 20px;
+  }
+  
+  .song-btns {
+    background: white;
+    outline: none;
+    border: 1px solid #e5e5e5;
+    border-radius: 3px;
+    margin-right: 5px;
+    cursor: pointer;
+    padding: 3px 10px;
+    font-size: 14px;
+    height: 26px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .songs-stats-divs {
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 15px;
+  }
+  
+  
+  
+  #song-banner-info {
+    width: 750px;
+    margin-left: 40px;
+  }
+  
+  #current-song-img {
+    height: 340px;
+    width: 340px;
+    margin-right: 30px;
+    margin-top: 20px;
+  }
+  
+  #song-banner-top {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  #song-banner-artist {
+    display: inline-block;
+    font-size: 15px;
+    margin-top: 80px;
+    padding: 6px 6px 5px 6px;
+    border-radius: 5px;
+    color: #963e7b;
+    font-size: 25px;
+  }
+  
+  #song-banner-bottom {
+    margin-top: 170px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  #song-banner-title {
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 22px;
+    padding: 8px 7px;
+    color: white;
+  }
+  
+  
+  
+  #player-container {
+    display: flex;
+  
+    position: relative;
+    right: 500px;
+    top: 240px;
+  }
+  
+  #song-comments {
+    min-height: 550px;
+    background: white;
+    padding: 20px 30px 135px 30px;
+  }
+  
+  #song-comments-container {
+    width: 1000px;
+  }
+  
+  #song-comments-form-container {
+    display: flex;
+  }
+  
+  #song-comments-form {
+    background: white;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+    width: 1000px;
+    border: 1px solid rgb(177, 172, 172);
+    transition: background 0.3s, border 0.3s;
+  }
+  
+  #song-comments-form input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgb(209, 206, 206);
+    border-radius: 5px;
+    height: 27px;
+    font-size: 14.5px;
+    padding-left: 9px;
+    margin-right: 6px;
+    cursor: pointer;
+    transition: border 0.3s;
+  }
+  
+  #song-comments-form input:focus {
+    cursor: text;
+  }
+  
+  #song-comments-form input:focus {
+    outline: none;
+    border: 1px solid black;
+  }
+  
+  
+  #player-container{
+    left:-450px;
+  }
+  
+  .audio-current-song{
+    margin-top: -200px;
+  }
