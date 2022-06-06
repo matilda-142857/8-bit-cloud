@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 
 import UploadForm from "./components/UploadFormPage/UploadFormPage";
+import UpdateForm from "./components/UpdateFormPage/UpdateFormPage";
 // import Splash from "./components/Splash/splash";
 import Navigation from "./components/Navigation";
 import SongPage from "./components/SongPage/SongPage";
@@ -30,6 +31,9 @@ function App() {
           {/* <Route exact path="/splash">
             <Splash />
           </Route> */}
+          <Route exact path='/song/edit/:songId'>
+            <UpdateForm />
+          </Route>
           <Route path="/songs/:songId">
             <SongPage />
           </Route>

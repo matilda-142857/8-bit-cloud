@@ -111,7 +111,8 @@ export const updateSong = (song) => async(dispatch)=>{
 
 export const deleteSong = (songId) => async dispatch => {
 
-  const response = await csrfFetch(`api/songs/${songId}`,{
+  const { id, title, gameId, uploaderId, genreId, playlistId, songmp3 } = songId;
+  const response = await csrfFetch(`/api/songs/${id}`,{
     method: 'DELETE',
     body: JSON.stringify(deleteSong)
   })

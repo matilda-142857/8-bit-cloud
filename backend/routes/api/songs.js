@@ -77,7 +77,6 @@ router.post(
       genreId,
       songmp3
     })
-    console.log(req.body)
     res.json(newSong)
   })
 )
@@ -86,12 +85,8 @@ router.post(
 router.get(
   '/:songId', 
   restoreUser, asyncHandler(async(req,res)=>{
-    console.log('inside song route')
-    console.log(req.params)
     const songId = parseInt(req.params.songId, 10);
-    console.log(songId)
     const song = await Song.findByPk(songId)
-    console.log(song);
     res.json(song)
   })
 )
@@ -108,28 +103,26 @@ router.get(
 
 //edit single song
 router.put(
-  '/:songid', 
+  '/:songId', 
   validateSong, requireAuth, asyncHandler(async(req,res)=>{
     const {title, gameId, genre, songmp3} = req.body
-    const songId = parseInt(req.params.id, 10);
-    const oldSong = await Song.findByPk(songId)
-    let editSong = await oldSong.update({
-     title, 
-     gameId, 
-     genre, 
-     songmp3
+    const songId = parseInt(req.params.songId, 10);
+    const editSong = await Song.findByPk(songId)
+    let editedSong = await editSong.update({
+      title, gameId, genre, songmp3
     })
-    return res.json(editSong)
+
+    return res.json(editedSong)
   })
 )
 
 router.delete(
-  '/songs/:songId', 
+  '/:songid', 
   requireAuth, asyncHandler(async(req,res)=>{
     let deleted = Song.destroy({
-        where: parseInt(req.params.songId, 10)
+        where: {id :parseInt(req.params.songid, 10)}
     })
-    res.json(deleted)
+    return res.json(deleted)
   })
 )
 

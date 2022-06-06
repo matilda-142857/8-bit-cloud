@@ -17,14 +17,7 @@ export default function SongPage({ isLoaded }) {
   const comments = Object.values(useSelector((state) => state.comments));
   const sessionUser = useSelector((state) => state.session.user);
 
-  const [displayComments, setDisplayComments] = useState(false);
-//   const dispatch = useDispatch();
-//   const { songId } = useParams();
-//   const [displayComments, setDisplayComments] = useState(false);
-//   const history = useHistory();
-//   const song = useSelector((state) => state.songs[songId]);
-//   const comments = Object.values(useSelector((state) => state.comments));
-//   const sessionUser = useSelector((state) => state.session.user);
+  const [displayComments, setDisplayComments] = useState(true);
 
   useEffect(() => {
     dispatch(getAllSongs());
@@ -65,10 +58,10 @@ export default function SongPage({ isLoaded }) {
 
                   <div id="song-banner-bottom">
                     <h2 id="song-banner-title">Category: {song.Genre.type}</h2>
-                <div className='button-container'>
-                {sessionUser.id === song.userId && <button onClick={() => handleEdit(song)} className='edit-button'>Edit Song</button>}
-                {sessionUser.id && <button onClick={() => setDisplayComments(!displayComments)} className='edit-button'>Review Song</button>}
-              </div>
+                    <div className='button-container'>
+                    {sessionUser.id === song.uploaderId && <button onClick={() => handleEdit(song)} className='edit-button'>Edit Song</button>}
+                    {sessionUser.id && <button onClick={() => setDisplayComments(!displayComments)} className='edit-button'>Review Song</button>}
+                    </div>
                     <div id="player-container">
                       {/* <audio
                       className="audio-current-song"
