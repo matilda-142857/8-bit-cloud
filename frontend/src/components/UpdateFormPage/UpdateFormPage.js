@@ -17,6 +17,7 @@ const UpdateForm = ({isLoaded}) => {
   const [gameId, setGameId] = useState(editSong.gameId || '');
   const [genreId, setGenreId] = useState(editSong.genreId || '');
   const [songmp3, setsongmp3] = useState(editSong.songmp3 || '');
+  const [playlistId, setplaylistId] = useState(editSong.playlistId || '');
  
   const [errors, setErrors] = useState([]);
   const history = useHistory();
@@ -35,18 +36,15 @@ const UpdateForm = ({isLoaded}) => {
     const editedSong = {
       id: editSong.id,
       title,
-      genreId,
-      uploaderId,
       gameId,
+      uploaderId,
+      genreId,
       songmp3,
+      playlistId
     };
 
     dispatch(updateSong(editedSong))
-    .then(() => history.push('/songs'))
-    .catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-    })
+    history.push('/songs')
   }
 
   const handleDelete = (e, song) => {

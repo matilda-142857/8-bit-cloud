@@ -6,6 +6,10 @@ import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormPage';
 import './Navigation.css';
 import logo from '../Navigation/cloudlogo.png';
+import ReactDOM from "react-dom";
+import ReactJkMusicPlayer from "react-jinke-music-player";
+import "react-jinke-music-player/assets/index.css";
+
 import * as sessionActions from '../../store/session';
 
 function Navigation({ isLoaded }){
@@ -65,6 +69,7 @@ return (
               {isLoaded && sessionLinks}
               {sessionUser?.username}
             </div>
+            <ReactJkMusicPlayer/>
           </div>
         </nav>
       </div>

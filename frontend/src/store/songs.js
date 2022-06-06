@@ -53,10 +53,12 @@ export const getSongsUser = () => async (dispatch) => {
   }
 };
 
+
+//new songggg
+
 export const createSong = (newSong) => async (dispatch) => {
 
   const { title, gameId, uploaderId, genreId, songmp3 } = newSong;
-  console.log(newSong);
   // const formData = new FormData();
   // formData.append("title", title);
   // formData.append("gameId", gameId);
@@ -85,22 +87,23 @@ export const createSong = (newSong) => async (dispatch) => {
 
 export const updateSong = (song) => async(dispatch)=>{
 
-  const { title, gameId, uploaderId, genreId, playlistId, songmp3 } = song;
+  const { id, title, gameId, uploaderId, genreId, playlistId, songmp3 } = song;
 
-  const formData = new FormData();
-  formData.append("title", title);
-  formData.append("gameId", gameId);
-  formData.append("uploaderId", uploaderId);
-  formData.append("genreId", genreId);
-  formData.append("playlistId", playlistId);
-  formData.append("songmp3", songmp3);
+  // const formData = new FormData();
+  // formData.append("title", title);
+  // formData.append("gameId", gameId);
+  // formData.append("uploaderId", uploaderId);
+  // formData.append("genreId", genreId);
+  // formData.append("playlistId", playlistId);
+  // formData.append("songmp3", songmp3);
   
-  const response = await csrfFetch(`/api/songs`, {
+  const response = await csrfFetch(`/api/songs/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
-    body: formData,
+    // body: formData,
+    body: JSON.stringify(song)
   });
   const editedSong = await response.json()
   if (response.ok){
