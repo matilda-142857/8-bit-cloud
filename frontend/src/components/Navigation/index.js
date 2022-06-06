@@ -54,11 +54,11 @@ return (
             <NavLink id="nav-home" exact to="/songs">
               Home
             </NavLink>
-            <NavLink id="nav-library" exact to="/library">
-              Library
+            <NavLink id="nav-library" exact to="/about">
+              About
             </NavLink>
             <div className="nav-search-container">
-              <input className="nav-search" placeholder="Search..."></input>
+              <input className="nav-search" placeholder="Search function coming soon!"></input>
               <button className="nav-search-btn">
                 <i className="fas fa-search"></i>
               </button>

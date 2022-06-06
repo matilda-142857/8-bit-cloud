@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createComment } from '../../store/commentss';
-import './comments.css'
+import './comments.css';
 
 const CommentForm = ({ song, setEditFormOpen }) => {
     const [comment, setComment] = useState('')
@@ -32,7 +32,7 @@ const CommentForm = ({ song, setEditFormOpen }) => {
 
     return (
         <div className='comment-form-container'>
-            <p className='commet-header'>Write a comment:</p>
+            <p className='comment-header'>Write a comment:</p>
             <form className='comment-form'>
                 {errors.length > 0 &&
                     <ul>

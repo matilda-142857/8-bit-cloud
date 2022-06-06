@@ -5,6 +5,7 @@ import * as sessionActions from "./store/session";
 
 import UploadForm from "./components/UploadFormPage/UploadFormPage";
 import UpdateForm from "./components/UpdateFormPage/UpdateFormPage";
+import AboutMe from "./components/About/about";
 // import Splash from "./components/Splash/splash";
 import Navigation from "./components/Navigation";
 import SongPage from "./components/SongPage/SongPage";
@@ -22,9 +23,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          {/* <Route exact path="/signup">
-            <SignupFormPage />
-          </Route> */}
+          <Route exact path="/about">
+            <AboutMe />
+          </Route>
           <Route exact path="/upload">
             <UploadForm />
           </Route>

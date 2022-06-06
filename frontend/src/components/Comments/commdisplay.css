@@ -1,14 +1,10 @@
-.comment-form-container{
-    width: 800px;
-    padding-left: 10%;
-    padding-top: 5%;
+.comment-text{
+    padding-left: 20px;
+    font-size: 25px;
+    border-color: #2d0224;
 }
 
-#comment-input{
-    width: 820px;
-}
-
-#submit-comment-button{
+.edit-open-button{
     display:inline-block;
     padding:0.35em 1.2em;
     border:0.1em solid #FFFFFF;
@@ -22,7 +18,7 @@
     transition: all 0.2s;
 }
 
-#submit-comment-button:hover{
+.edit-open-button:hover{
     color:#ffffff;
     background-color:#2d0224;
 }

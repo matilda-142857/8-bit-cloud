@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import './comments.css'
 import CommentForm from './CommEdit';
 import { getAllUsers } from '../../store/users';
+import './commdisplay.css';
 
 const CommentDisplay = ({ comment, song }) => {
 
@@ -23,10 +24,10 @@ const CommentDisplay = ({ comment, song }) => {
     //return stuff renders PER user
     return (
         <div className='comment-container'>
-            {commentUser && <p className='comment-username'>{commentUser.username}</p>}
+            {commentUser && <p className='comment-username'>{commentUser.username} says: </p>}
             {comment &&
                 <>
-                    <p className='comment-text-header'>Comment:</p>
+                    {/* <p className='comment-text-header'>Comment:</p> */}
                     <p className='comment-text'>{comment.comment}</p>
                 </>
             }
