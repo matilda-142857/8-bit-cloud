@@ -6,7 +6,6 @@ const searchRouter = require('./search.js');
 const commentsRouter = require('./commentss.js');
 
 router.use('/session', sessionRouter);
-
 router.use('/users', usersRouter);
 router.use('/songs', songsRouter);
 router.use('/search', searchRouter);

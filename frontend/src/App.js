@@ -20,31 +20,33 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
            <Route exact path="/">
             <SplashPage />
           </Route>
           <Route exact path="/about">
+          <Navigation isLoaded={isLoaded} />
             <AboutMe />
           </Route>
           <Route exact path="/upload">
+          <Navigation isLoaded={isLoaded} />
             <UploadForm />
           </Route>
-          <Route exact path="/splash">
-            <SplashPage />
-          </Route>
           <Route exact path='/song/edit/:songId'>
+          <Navigation isLoaded={isLoaded} />
             <UpdateForm />
           </Route>
           <Route path="/songs/:songId">
+          <Navigation isLoaded={isLoaded} />
             <SongPage />
           </Route>
           <Route exact path="/songs">
+          <Navigation isLoaded={isLoaded} />
             <AllSongs />
           </Route>
           <Route path="/songs/:songId">
+          <Navigation isLoaded={isLoaded} />
             <SongPage isLoaded={isLoaded} />
           </Route>
         </Switch>
