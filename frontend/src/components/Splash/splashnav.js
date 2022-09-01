@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink, useHistory, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
@@ -18,10 +18,9 @@ function SplashNav({ isLoaded }){
 
   let sessionLinks;
   if (sessionUser) {
-    sessionLinks = (
-      <ProfileButton user={sessionUser} className='profile-button' />
-    );
-  } else {
+    return <Redirect to={"/songs"} />;
+  }
+    else {
     sessionLinks = (
       <>
         <LoginFormModal id='login-button'/>
