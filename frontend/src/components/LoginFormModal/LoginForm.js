@@ -35,12 +35,14 @@ export default function LoginForm() {
 
   return (
     <div className="login-container">
-        <div id="login-title">Welcome back!</div>
-    <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => (<li key={idx}>{error}</li>))}
-      </ul>
-      {/* <label> Username or Email */}
+      <div id="login-title">Welcome back!</div>
+      <form onSubmit={handleSubmit}>
+        <ul>
+          {errors.map((error, idx) => (
+            <li key={idx}>{error}</li>
+          ))}
+        </ul>
+        {/* <label> Username or Email */}
         <input
           type="text"
           value={credential}
@@ -49,8 +51,8 @@ export default function LoginForm() {
           className="login-inputs"
           required
         />
-      {/* </label>
-      <label> Password*/}   
+        {/* </label>
+      <label> Password*/}
         <input
           type="password"
           value={password}
@@ -59,22 +61,23 @@ export default function LoginForm() {
           className="login-inputs"
           required
         />
-      {/* </label> */}
-      <button className="loginFormBtns" type="submit">Log In</button>     
-    </form>
-    
-        <div className="login-or">
-          <div className="before-or"></div>
-          <div>or</div>
+        {/* </label> */}
+        <button className="loginFormBtns" type="submit">
+          Log In
+        </button>
+      </form>
+
+      <div className="login-or">
+        <div className="before-or"></div>
+        <div>or</div>
         <div className="after-or"></div>
-        </div>
+      </div>
 
-    <form onSubmit={demoSubmit}>
-      <button className="loginFormBtns" id="demoBtn" type="submit">
-        Log In As A Guest
-      </button>
-    </form>
-
+      <form onSubmit={demoSubmit}>
+        <button className="loginFormBtns" id="demoBtn" type="submit">
+          Log In As A Guest
+        </button>
+      </form>
     </div>
   );
 }

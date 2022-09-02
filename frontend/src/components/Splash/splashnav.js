@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { NavLink, useHistory, Redirect } from 'react-router-dom';
+import { NavLink, useHistory, Redirect} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormPage';
@@ -18,23 +18,14 @@ function SplashNav({ isLoaded }){
   if (sessionUser != undefined) {
     return <Redirect to={"/songs"} />;
   }
- 
-  let sessionLinks = (
-      <>
-        <LoginFormModal id='login-button'/>
-        <SignupFormModal id='signup-button'/>
-      </>
-    );
-
-  console.log(sessionLinks)
 
 return (
     <div className="splashnav">
       <div className="splashnav-content">
             <img id="splashlogo" src={logo} />
             <div id="splashnavbuttons">
-                <LoginFormModal className="splashlogin" />
-                <SignupFormModal className="splashsignup" />
+                <LoginFormModal/>
+                <SignupFormModal/>
             </div>
       </div>
     </div>
