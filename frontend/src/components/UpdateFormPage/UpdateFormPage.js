@@ -1,63 +1,77 @@
-import React, { useState, useEffect } from "react";
-import { createSong } from "../../store/songs";
+import React, { useEffect, useState} from "react";
+import { useHistory, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
+import { updateSong, deleteSong } from "../../store/songs";
 import Navigation from "../Navigation";
-import { useHistory } from "react-router-dom";
-import image from '../UploadFormPage/image.png';
-import "./upload.css";
+import image from '../UpdateFormPage/image.jpg';
+import "./update.css";
 
-const UploadForm = ({isLoaded}) => {
+const UpdateForm = ({isLoaded}) => {
 
+  const allSongs = useSelector(state => state.songs)
+  const editSongId = useParams().songId
+  const editSong = allSongs[editSongId] || {}
   const sessionUser = useSelector((state) => state.session.user);
-  const [title, setTitle] = useState("");
-  const [gameId, setGameId] = useState("13");
-  const [genreId, setGenreId] = useState(1);
-  const [songmp3, setsongmp3] = useState(null);
+
+  const [title, setTitle] = useState(editSong.title || '');
+  const [gameId, setGameId] = useState(editSong.gameId || '');
+  const [genreId, setGenreId] = useState(editSong.genreId || '');
+  const [songmp3, setsongmp3] = useState(editSong.songmp3 || '');
+  const [playlistId, setplaylistId] = useState(editSong.playlistId || '');
  
   const [errors, setErrors] = useState([]);
   const history = useHistory();
   const dispatch = useDispatch();
 
   useEffect(()=> {
-      if(!sessionUser){
-          history.push('/')
-      }
-  },[history, sessionUser])
+    if(!sessionUser || sessionUser.id !== editSong.uploaderId){
+      history.push('/')
+    }
+  },[editSong.uploaderId, history, sessionUser])
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const uploaderId = sessionUser.id;
+    const editedSong = {
+      id: editSong.id,
+      title,
+      gameId,
+      uploaderId,
+      genreId,
+      songmp3,
+      playlistId
+    };
+    dispatch(updateSong(editedSong))
+    history.push('/songs')
+  }
 
   const updateFile = (e) => {
     const file = e.target.files[0];
     if (file) setsongmp3(file);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const uploaderId = sessionUser.id;
-    const song = {
-      title,
-      genreId,
-      uploaderId,
-      gameId,
-      songmp3,
-    };
-    return dispatch(createSong(song))
-    .then(() => history.push('/songs'))
-    .catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-    })
-}
+  const handleDelete = (e, song) => {
+    e.preventDefault()
+    dispatch(deleteSong(editSong))
+    history.push('/songs')
+  }
 
   return (
     <div className="mainscreen">
       <div className="uploadcard">
-      {/* <Navigation isLoaded={isLoaded} /> */}
+      <Navigation isLoaded={isLoaded} />
       <div className="leftside">
         <img src={image} className="image"/>
       </div>
       <div className="rightside">
         <form onSubmit={handleSubmit}>
-          <h2>Add a Track</h2>
+        {errors.length > 0 &&
+          <ul>
+            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+          </ul>
+                }
+          <h2>Edit this Track</h2>
           <p>Track Title</p>
           <input
               type="text"
@@ -120,19 +134,19 @@ const UploadForm = ({isLoaded}) => {
             type="text"
             placeholder="Link to an audio file"
             className="inputbox"
-            onChange={(e) => setsongmp3(e.target.value)}
             required
             /> */}
             <input
-              type="file"
-              placeholder="Audio/MP3"
-              onChange={updateFile}
-              className="upload__inputs"
-              id="audio__input"
-              required
+            type="file"
+            placeholder="Audio/MP3"
+            onChange={updateFile}
+            className="upload__inputs"
+            id="audio__input"
+            required
             />
           <p></p>
           <button type="submit" className="button">Submit</button>
+          <button type="submit" className="button" onClick={(e) => handleDelete(e, editSong)}>Delete Song</button>
         </form>
       </div>
     </div>
@@ -140,4 +154,4 @@ const UploadForm = ({isLoaded}) => {
   );
 }
 
-export default UploadForm
+export default UpdateForm

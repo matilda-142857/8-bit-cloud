@@ -6,9 +6,12 @@ body {
 }
 
 .mainscreen{
-	height: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
+	height: 100vh;
 	width: 100%;
-	display: flexbox;
+	display: flex;
+  box-sizing: border-box;
     flex-direction: column;
     background-color: #DFDBE5;
     color:#963E7B;

@@ -1,3 +1,23 @@
+.edit-button{
+    display:inline-block;
+    padding:0.35em 1.2em;
+    border:0.1em solid #FFFFFF;
+    margin:0 0.3em 0.3em 0;
+    border-radius:0.12em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-weight:300;
+    color:#2f032a;
+    text-align:center;
+    transition: all 0.2s;
+    margin-left: 5px;
+}
+
+.edit-button:hover{
+  color:#ffffff;
+  background-color:#5ebfd7;
+}
+
 #song-show-page {
     width: 93.2%;
     height: auto;
@@ -17,7 +37,7 @@
 
   .header{
     margin-top: 70px;
-    margin-left: 20px;
+    margin-left: 120px;
   }
   
   .song-btns {
@@ -65,7 +85,8 @@
   #song-banner-artist {
     display: inline-block;
     font-size: 15px;
-    margin-top: 80px;
+    margin-top: 70px;
+    margin-left: 100px;
     padding: 6px 6px 5px 6px;
     border-radius: 5px;
     color: #963e7b;
@@ -152,3 +173,35 @@
   .audio-current-song{
     margin-top: -200px;
   }
+
+  
+.play-button {
+  position: absolute;
+  top: calc(26% - 25px);
+  left: calc(21% - 50px);
+  width: 90px;
+  height: 90px;
+  display: block;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0 auto;
+  user-select: none;
+  background-color: rgba(0, 0, 0, 0.6);
+  transition: background-color 0.5s ease;
+}
+  .play-button:after {
+    position: absolute;
+    top: calc(50% - 25px);
+    left: calc(50% - 14px);
+    display: block;
+    content: '';
+    box-sizing: border-box;
+    border-color: transparent transparent transparent #fff;
+    border-style: solid;
+    border-width: 26px 0 26px 40px;
+  }
+  .play-button:hover {
+    background-color: rgba(0, 33, 66, 0.9);
+    cursor: pointer;
+}

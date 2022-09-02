@@ -1,0 +1,64 @@
+.splashnav{
+  width: 1400px;  
+  height: 60px;
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
+  position: absolute;
+  z-index: 2;
+}
+
+.splashnav-content{
+  position: relative;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+#splashlogo{
+  width: auto;
+  height: 30px;
+  margin: 20px;
+}
+
+#splashnavbuttons{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.splashbtn{
+  font-size: 14px;
+  text-decoration: none;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  font-family: 'Silkscreen', cursive;
+}
+
+.splashbtn:hover{
+  cursor:pointer;
+}
+
+#loginbtn{
+  text-decoration: none;
+  color: rgb(8, 8, 53);
+  width: 100px;
+  background: transparent;
+  border: 1px solid rgb(8, 8, 53);
+}
+
+#loginbtn:hover{
+  border: 2px solid rgb(8, 8, 53);
+}
+
+#signupbtn{
+  text-decoration: none;
+  color: whitesmoke;
+  width: 200px;
+  background: rgb(048, 195, 124);
+  border: none;
+}

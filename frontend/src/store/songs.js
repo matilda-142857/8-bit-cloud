@@ -53,39 +53,42 @@ export const getSongsUser = () => async (dispatch) => {
   }
 };
 
+
+//new songggg
+
 export const createSong = (newSong) => async (dispatch) => {
 
   const { title, gameId, uploaderId, genreId, songmp3 } = newSong;
-  console.log(newSong);
-  // const formData = new FormData();
-  // formData.append("title", title);
-  // formData.append("gameId", gameId);
-  // if (uploaderId) {
-  //   formData.append("uploaderId", uploaderId);
-  // };
-  // formData.append("genreId", genreId);
-  // formData.append("songmp3", songmp3);
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("gameId", gameId);
+  if (uploaderId) {
+    formData.append("uploaderId", uploaderId);
+  };
+  formData.append("genreId", genreId);
+
+  if (songmp3) formData.append("songmp3", songmp3);
 
   const response = await csrfFetch(`/api/songs/upload`, {
     method: "POST",
-    // headers: {
-    //   "Content-Type": "multipart/formData",
-    // },
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "multipart/form-data",
     },
-    // body: formData,
-    body: JSON.stringify(newSong),
+    // headers: {
+    //   "Content-Type": "application/json",
+    // },
+    body: formData,
+    // body: JSON.stringify(newSong),
   });
 
   const song = await response.json();
   dispatch(getAllSongs());
-  return song;
+  return response;
 };
 
 export const updateSong = (song) => async(dispatch)=>{
 
-  const { title, gameId, uploaderId, genreId, playlistId, songmp3 } = song;
+  const { id, title, gameId, uploaderId, genreId, playlistId, songmp3 } = song;
 
   const formData = new FormData();
   formData.append("title", title);
@@ -93,14 +96,17 @@ export const updateSong = (song) => async(dispatch)=>{
   formData.append("uploaderId", uploaderId);
   formData.append("genreId", genreId);
   formData.append("playlistId", playlistId);
-  formData.append("songmp3", songmp3);
   
-  const response = await csrfFetch(`/api/songs`, {
+  if (songmp3) formData.append("songmp3", songmp3);
+
+  const response = await csrfFetch(`/api/songs/${id}`, {
     method: "PUT",
     headers: {
-      "Content-Type": "application/json",
+      // "Content-Type": "application/json",
+      "Content-Type": "multipart/form-data",
     },
     body: formData,
+    // body: JSON.stringify(song)
   });
   const editedSong = await response.json()
   if (response.ok){
@@ -111,7 +117,8 @@ export const updateSong = (song) => async(dispatch)=>{
 
 export const deleteSong = (songId) => async dispatch => {
 
-  const response = await csrfFetch(`api/songs/${songId}`,{
+  const { id, title, gameId, uploaderId, genreId, playlistId, songmp3 } = songId;
+  const response = await csrfFetch(`/api/songs/${id}`,{
     method: 'DELETE',
     body: JSON.stringify(deleteSong)
   })

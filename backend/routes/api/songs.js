@@ -1,3 +1,5 @@
+const { singlePublicFileUpload, singleMulterUpload }= require ('../../awsS3')
+
 const express = require('express')
 const asyncHandler = require('express-async-handler');
 
@@ -19,17 +21,16 @@ const validateSong = [
     .withMessage('Please provide the game associated with this track.')
     .isLength({max: 50})
     .withMessage('Track name must not be more than 50 characters.'),
-  check('genre')
+  check('genreId')
     .exists({ checkFalsy: true })
     .withMessage('Please pick an appropriate genre for this game.'),
-  check('songmp3')
-    .exists({ checkFalsy: true })
-    .withMessage('Please provide the audio file as a link.'),
+  // check('songmp3')
+  //   .exists({ checkFalsy: true })
+  //   .withMessage('Please provide the audio file as a link.'),
   handleValidationErrors
 ];
 
 //discover page
-
 
 //get all songs
 router.get(
@@ -67,9 +68,11 @@ router.get(
 //add a song
 router.post(
   '/upload', 
-  // validateSong, 
+  singleMulterUpload("songmp3"),
+  validateSong, 
   requireAuth, asyncHandler(async(req,res)=>{
-    const {title, gameId, uploaderId, genreId, songmp3} = req.body
+    const {title, gameId, uploaderId, genreId} = req.body
+    const songmp3 = await singlePublicFileUpload(req.file)
     let newSong = await Song.create({
       title,
       gameId,
@@ -77,7 +80,6 @@ router.post(
       genreId,
       songmp3
     })
-    console.log(req.body)
     res.json(newSong)
   })
 )
@@ -86,50 +88,50 @@ router.post(
 router.get(
   '/:songId', 
   restoreUser, asyncHandler(async(req,res)=>{
-    console.log('inside song route')
-    console.log(req.params)
     const songId = parseInt(req.params.songId, 10);
-    console.log(songId)
     const song = await Song.findByPk(songId)
-    console.log(song);
     res.json(song)
   })
 )
 
 //get 12 songs on splash page
-router.get(
-  "/splash",
-  asyncHandler(async (req, res) => {
-    const splashSongs = await Song.findAll({ limit: 12 });
-    return res.json({ splashSongs });
-  })
-);
-
+// router.get(
+//   "/splash",
+//   asyncHandler(async (req, res) => {
+//     const splashSongs = await Song.findAll
+//       (
+//         { 
+//           limit: 12,
+//           include: [Game, Genre]
+//         }
+//       );
+//     return res.json({ splashSongs });
+//   })
+// );
 
 //edit single song
+
 router.put(
-  '/:songid', 
+  '/:songId', 
+  singleMulterUpload("songmp3"),
   validateSong, requireAuth, asyncHandler(async(req,res)=>{
-    const {title, gameId, genre, songmp3} = req.body
-    const songId = parseInt(req.params.id, 10);
-    const oldSong = await Song.findByPk(songId)
-    let editSong = await oldSong.update({
-     title, 
-     gameId, 
-     genre, 
-     songmp3
+    const {title, gameId, genreId, songmp3} = req.body;
+    const songId = parseInt(req.params.songId, 10);
+    const editSong = await Song.findByPk(songId)
+    let editedSong = await editSong.update({
+      title, gameId, genreId, songmp3
     })
-    return res.json(editSong)
+    return res.json(editedSong)
   })
 )
 
 router.delete(
-  '/songs/:songId', 
+  '/:songid', 
   requireAuth, asyncHandler(async(req,res)=>{
     let deleted = Song.destroy({
-        where: parseInt(req.params.songId, 10)
+        where: {id :parseInt(req.params.songid, 10)}
     })
-    res.json(deleted)
+    return res.json(deleted)
   })
 )
 

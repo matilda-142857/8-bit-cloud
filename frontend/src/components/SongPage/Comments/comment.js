@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { postComment } from "../../../store/comments";
+import './comments.css';
 
 export default function CommentForm({ songId, user }) {
   const dispatch = useDispatch();

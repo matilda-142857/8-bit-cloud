@@ -31,7 +31,7 @@ export default function AllSongs({ isLoaded }) {
     <div className="mainscreen">
       <div className="card">
         <h1 className="header">Browse All Tracks on 8BITCLOUD</h1>
-        <Navigation isLoaded={isLoaded} />
+        {/* <Navigation isLoaded={isLoaded} /> */}
         <div className="discover-tracks-container">
           <div className="discover-songs">
             {songs.map((song) => {

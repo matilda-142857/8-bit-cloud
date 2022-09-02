@@ -1,212 +1,137 @@
-const { useState, useEffect, useRef, Fragment } = React
+import React, { useState, useRef, useEffect } from "react";
+import "./splashheader.css";
+import { useSelector, useDispatch } from "react-redux";
+// import { openLogin, closeLogin } from "../../store/modal";
+import Modal from "react-modal";
+import LoginForm from "../LoginFormModal/LoginForm";
+import img1 from "./8bsplash1.png"
+import img2 from "./8bsplash2.png"
 
-const Thisgoesintosplashpage = () => {
-  const slides = [
-    {
-    	content: () => <div className="withImage"><img src=""></img></div>
-    },
-    {
-    	content: () => <div className="withImage"><img src="https://justacoding.blog/wp-content/uploads/2021/10/loop.jpg"></img></div>
-    },
-    {
-    	content: () => <div className="withImage"><img src="https://justacoding.blog/wp-content/uploads/2021/10/loop.jpg"></img></div>
-    }
-  ]
+const SliderData = [
+  {
+    image: img1,
+  },
+  {
+    image: img2,
+  },
+];
 
-	return (
-  	<Fragment>     
-      <h3>Mode: automatic</h3>
-      <Carousel 
-        slides={slides} 
-        speed={2000} 
-        slideWidth={500} 
-        slideHeight={300} 
-      />
-	  </Fragment>
-  )
-}
+export function SplashHeader() {
+  const image1 = useRef();
+  const image2 = useRef();
+  const slidebtn1 = useRef();
+  const slidebtn2 = useRef();
 
-export const SplashHeader = ({ 
-	//slides = [], 
-    speed = 3000,
-    transitionSpeed = 500, 
-    slideWidth = 300, 
-    slideHeight = 300, 
-    autoScroll, 
-    manualMode 
-  }) => {
+  // const dispatch = useDispatch();
+  // const loginState = useSelector((state) => state.modal.loginShow);
+  // const closeModal = () => dispatch(closeLogin());
 
-	const [visibleSlide, setVisibleSlide] = useState(1)
-	const [hasTransitionClass, setHasTransitionClass] = useState(true)
-    const [stateSlides, setStateSlides] = useState(slides)
-    const [leftAndRightDisabled, setLeftAndRightDisabled] = useState(false)
-    const intervalId = useRef(null)
- 
-  // useEffect with an empty array as the second parameter
-  // will run only once, when the component mounts 
-  // this makes it an ideal place to trigger this functionality
+  const [slider, setSlider] = useState([]);
+
   useEffect(() => {
-  	const slidesWithClones = [...slides]
-    slidesWithClones.unshift(slidesWithClones[slidesWithClones.length - 1])
-    slidesWithClones.push(slidesWithClones[1])
-  	setStateSlides(slidesWithClones)
-  
-    // if (!!autoScroll) {
-    // 	start()
-    // }
-  }, [])
-  
-  // Monitor changes for the visibleSlide value and react accordingly
-  // We need to loop back to the first slide when scrolling right
-  // from the last slide (and vice-versa for the other direction)
-  // And we also need to disable the animations (by removing the
-  // transition class from the relevant element) in order to give
-  // the impression that the carousel is scrolling infinitely 
-  // during our slide-cloning/swapping mechanism
-  useEffect(() => {
-    if (visibleSlide == stateSlides.length - 1) {
-    	setLeftAndRightDisabled(true)
-    	setTimeout(() => {
-      	setHasTransitionClass(false)
-      	setVisibleSlide(1)
-      }, transitionSpeed)
-    }
-    
-    if (visibleSlide === 1) {
-    	setTimeout(() => {
-      	setHasTransitionClass(true)
-      }, transitionSpeed)
-    }
-    
-    if (visibleSlide === 0) {
-    	setLeftAndRightDisabled(true)
-    	setTimeout(() => {
-      	setHasTransitionClass(false)
-        setVisibleSlide(stateSlides.length - 2)
-      }, transitionSpeed)
-    }
-    
-    if (visibleSlide == stateSlides.length - 2) {
-   		setTimeout(() => {
-      	setHasTransitionClass(true)
-      }, transitionSpeed)
-    }
-  }, [visibleSlide])
-  
-  // Whenever the left and right arrows are disabled
-  // We want to enable them again after a specific 
-  // period of time, this is to prevent problematic
-  // spamming of these controls during our clone 
-  // slide-cloning/swapping mechanism
-  // Probably a better way to handle this though
-	useEffect(() => {
-    if (leftAndRightDisabled) {
+    const timer = setInterval(() => {
+      image1.current.classList.add("slide-add");
+      image2.current.classList.add("slide-add");
       setTimeout(() => {
-        setLeftAndRightDisabled(false)
-      }, transitionSpeed * 2)
-    }
-  }, [leftAndRightDisabled])
+        image1.current.classList.remove("slide-add");
+        image2.current.classList.remove("slide-add");
+        const sliderCopy = slider.slice();
+        const slideImg = sliderCopy.shift();
+        sliderCopy.push(slideImg);
+        setSlider(sliderCopy);
+      }, 1000);
+    }, 4000);
 
-  const start = () => {
-  	if (intervalId.current != null) {
-    	return
-    }
-    intervalId.current = setInterval(() => {
-      setVisibleSlide(prevVisibleSlide => {
-        if (prevVisibleSlide + 1 === stateSlides.length) {
-        	return 0
-        }
-      	return prevVisibleSlide + 1
-      })
-    }, speed)
-  }
-  
-  const stop = () => {
-  	clearInterval(intervalId.current)
-  }
-  
-  const calculateLeftMargin = () => {
-  	return "-" + (visibleSlide * slideWidth) + "px"
-  }
-  
-  const slideDimensionStyles = () => {
- 		return { width: slideWidth + "px", height: slideHeight + "px" }
-  }
-  
-  const scrollLeft = () => {
-  	setVisibleSlide(visibleSlide - 1)
-  }
-  
-  const scrollRight = () => {
-  	setVisibleSlide(visibleSlide + 1)
-  }
-  
-  const dotIsActive = (index) => {
-  	return (
-      index === visibleSlide || 
-    	(index === 1 && visibleSlide === stateSlides.length - 1) || 
-      (index === stateSlides.length - 2 && visibleSlide === 0)
-    )
-  }
+    return () => clearInterval(timer);
+  });
 
-	return (
-  	<div className="carousel">
-       {!autoScroll && !manualMode && (
-      	<div className="controls">
-          <a onClick={start} href="javascript:;">Start</a>{" "}
-          <a onClick={stop} href="javascript:;">Stop</a>
-        </div>
-      )}
-  	  
-      <div className="slidesContainer" style={slideDimensionStyles()}>
-        {!!manualMode && (
-        	<Fragment>
-            <a 
-              onClick={!leftAndRightDisabled ? scrollLeft : null} 
-              href="javascript:;" 
-              className={`scrollLeft ${leftAndRightDisabled ? "disabled" : ""}`}>
-                Left
+  const slideChange = () => {
+    image1.current.classList.add("slide-add");
+    image2.current.classList.add("slide-add");
+    setTimeout(() => {
+      image1.current.classList.remove("slide-add");
+      image2.current.classList.remove("slide-add");
+      const sliderCopy = slider.slice();
+      const slideImg = sliderCopy.shift();
+      sliderCopy.push(slideImg);
+      setSlider(sliderCopy);
+    }, 1000);
+  };
+
+  useEffect(() => {
+    const imgs = [
+      <span key={0} ref={image1}>
+        <img
+          className="slider-img"
+          src={SliderData[0].image}
+          alt="undertale_splashart"
+        />
+        <span>
+          <span class="slider_title" id="slider_title_1">Discover more with 8BITCLOUD</span>
+          <p className="slider_text" id="slider_text_1">
+            8BITCloud lets you listen anytime, ad-free, with over 150
+            tracks — and growing.
+          </p>
+          <span className = "slider_btn" >
+            <a
+              href="https://www.linkedin.com/in/matilda-zhang-328ba8186/"
+              id="slider1_btn"
+            >
+              Meet The Dev
             </a>
-            <a 
-              onClick={!leftAndRightDisabled ? scrollRight : null} 
-              href="javascript:;" className={`scrollRight ${leftAndRightDisabled ? "disabled" : ""}`}>
-                Right
-            </a>
-          </Fragment>
-      	)}
-        
-        <div className="slideIndicator">
-          {stateSlides.map((slide, index) => {
-          	if (index === 0 || index === stateSlides.length - 1) {
-            	return null
-            }
-          	return (
-            	<div 
-                key={index} 
-                onClick={() => setVisibleSlide(index)} 
-                className={`dot ${dotIsActive(index) ? "active" : ""}`}
-              />
-            )
-          })}
-        </div>
-        
-        <div 
-          id="slides" 
-          className={`slides ${hasTransitionClass ? "transition" :""}`} 
-          style={{ left: calculateLeftMargin() }}>
-          {stateSlides.map((slide, index) => {
-            return (
-            	<div key={index} className="slide" style={slideDimensionStyles()}>
-                {!!slide.title && <div className="title">{slide.title}</div>}
-                <div className="slideInner">
-                  {slide.content()}
-                </div>
-              </div>
-            )
-          })}
-        </div>
+            <>
+              {/* <button id="slider1btn2" onClick={() => dispatch(openLogin())}>
+                Try It Free Here
+              </button> */}
+              {/* <Modal
+                isOpen={loginState}
+                closeTimeoutMS={500}
+                onRequestClose={closeModal}
+                contentLabel="Login Modal"
+                overlayClassName="OuterModal"
+                className="InnerModal"
+              >
+                <LoginForm />
+              </Modal> */}
+            </>
+          </span>
+        </span>
+      </span>,
+      <span ref={image2} key={1}>
+        <img
+          className="slider-img"
+          src={SliderData[1].image}
+          alt="zelda_splashart"
+        />
+        <span className="slider2container">
+          <span class= "slider_title" id="slider_title_2">
+            What's next in gaming is first on 8BITCLOUD
+          </span>
+          <p className="slider_text" id="slider_text_2">
+            Upload your first track and begin your journey. 8BitCloud gives you
+            space to create, find your fans, and connect with other video game artists.
+          </p>
+        </span>
+      </span>,
+    ];
+    setSlider(imgs);
+  }, []);
+
+  return (
+    <div className="splash-slider-container">
+      <div className="slide">{slider}</div>
+      <div className="slidebtns">
+        <button
+          ref={slidebtn1}
+          className="slide_btn1"
+          onClick={slideChange}
+        ></button>
+        <button
+          ref={slidebtn2}
+          className="slide_btn2"
+          onClick={slideChange}
+        ></button>
       </div>
-      
-  	</div>
-  )
+    </div>
+  );
 }

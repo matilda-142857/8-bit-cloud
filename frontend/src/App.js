@@ -4,7 +4,9 @@ import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 
 import UploadForm from "./components/UploadFormPage/UploadFormPage";
-// import Splash from "./components/Splash/splash";
+import UpdateForm from "./components/UpdateFormPage/UpdateFormPage";
+import AboutMe from "./components/About/about";
+import SplashPage from "./components/Splash/splashindex";
 import Navigation from "./components/Navigation";
 import SongPage from "./components/SongPage/SongPage";
 import AllSongs from "./components/AllSongs/AllSongs";
@@ -18,25 +20,33 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          {/* <Route exact path="/signup">
-            <SignupFormPage />
-          </Route> */}
+           <Route exact path="/">
+            <SplashPage />
+          </Route>
+          <Route exact path="/about">
+          <Navigation isLoaded={isLoaded} />
+            <AboutMe />
+          </Route>
           <Route exact path="/upload">
+          <Navigation isLoaded={isLoaded} />
             <UploadForm />
           </Route>
-          {/* <Route exact path="/splash">
-            <Splash />
-          </Route> */}
+          <Route exact path='/song/edit/:songId'>
+          <Navigation isLoaded={isLoaded} />
+            <UpdateForm />
+          </Route>
           <Route path="/songs/:songId">
+          <Navigation isLoaded={isLoaded} />
             <SongPage />
           </Route>
           <Route exact path="/songs">
+          <Navigation isLoaded={isLoaded} />
             <AllSongs />
           </Route>
           <Route path="/songs/:songId">
+          <Navigation isLoaded={isLoaded} />
             <SongPage isLoaded={isLoaded} />
           </Route>
         </Switch>
