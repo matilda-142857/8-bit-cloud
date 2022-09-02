@@ -85,8 +85,8 @@
   font-family: 'Silkscreen', cursive;
 }
 
-#slider1btn1:hover {
-  border: 2px solid white;
+#slider1_btn:hover {
+  border: 2px solid rgb(8, 8, 53);
   margin: -1px;
 }
 
@@ -145,7 +145,7 @@
   height: 16px;
   width: 16px;
   background: transparent;
-  border: 1.25px solid white;
+  border: 1.25px solid rgb(8, 8, 53);
 }
 
 .slide {

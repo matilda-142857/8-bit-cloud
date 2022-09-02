@@ -6,7 +6,7 @@ import * as sessionActions from "./store/session";
 import UploadForm from "./components/UploadFormPage/UploadFormPage";
 import UpdateForm from "./components/UpdateFormPage/UpdateFormPage";
 import AboutMe from "./components/About/about";
-import SplashPage from "./components/Splash/splashpage";
+import SplashPage from "./components/Splash/splashindex";
 import Navigation from "./components/Navigation";
 import SongPage from "./components/SongPage/SongPage";
 import AllSongs from "./components/AllSongs/AllSongs";

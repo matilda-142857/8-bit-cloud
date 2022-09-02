@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
 import { NavLink, useHistory, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormPage';
-import './Navigation.css';
-import logo from '../Navigation/cloudlogo.png';
+import './splash.css';
+import logo from './8blogo.png';
 import ReactDOM from "react-dom";
 
 import * as sessionActions from '../../store/session';
@@ -16,33 +15,27 @@ function SplashNav({ isLoaded }){
   const history = useHistory;
   const [audioLists, setAudioLists] = useState([]);
 
-  let sessionLinks;
-  if (sessionUser) {
+  if (sessionUser != undefined) {
     return <Redirect to={"/songs"} />;
   }
-    else {
-    sessionLinks = (
+ 
+  let sessionLinks = (
       <>
         <LoginFormModal id='login-button'/>
         <SignupFormModal id='signup-button'/>
-        {/* <NavLink to="/signup">Sign Up</NavLink> */}
       </>
     );
-  }
+
+  console.log(sessionLinks)
 
 return (
-    <div className="navbar">
-      <div id="nav-content">
-        <nav id="nav">
-          <div id="logo">
-            <img id="imgLogo" src={logo} />
-            <NavLink id="homeBtn" exact to="/">
-              8BITCLOUD
-            </NavLink>
-            {isLoaded && sessionLinks}
-            {/* <ReactJkMusicPlayer/> */}
-          </div>
-        </nav>
+    <div className="splashnav">
+      <div className="splashnav-content">
+            <img id="splashlogo" src={logo} />
+            <div id="splashnavbuttons">
+                <LoginFormModal className="splashlogin" />
+                <SignupFormModal className="splashsignup" />
+            </div>
       </div>
     </div>
   );
