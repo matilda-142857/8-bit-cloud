@@ -1,11 +1,11 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
-const { Song } = require('../../db/models');
+const { Song, User } = require('../../db/models');
 const {Op} = require('sequelize')
 const router = express.Router();
 
-router.post('/:keyword', asyncHandler(async(req,res)=>{
-    const keyword = req.params.keyword
+router.post('/:search', asyncHandler(async(req,res)=>{
+    const search = req.params.search
     const songs = await Song.findAll({
         where:{
             title:{

@@ -20,6 +20,15 @@ function App() {
 
   return (
     <>
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@100&family=Gothic+A1:wght@600&family=Libre+Franklin:wght@700&family=Nanum+Gothic&family=Open+Sans:wght@300&family=Roboto:wght@300&family=Silkscreen&display=swap');
+      </style>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous"
+      />
       {isLoaded && (
         <Switch>
            <Route exact path="/">

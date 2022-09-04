@@ -94,20 +94,30 @@ router.get(
   })
 )
 
-//get 12 songs on splash page
-// router.get(
-//   "/splash",
-//   asyncHandler(async (req, res) => {
-//     const splashSongs = await Song.findAll
-//       (
-//         { 
-//           limit: 12,
-//           include: [Game, Genre]
-//         }
-//       );
-//     return res.json({ splashSongs });
-//   })
-// );
+//get 12 songs on splash
+router.get(
+  "/splash",
+  asyncHandler(async (req, res) => {
+    const allSongs = await Song.findAll(
+        { 
+          include: [Game, Genre]
+        }
+      );
+      const twelveSongs = ([...allSongs].sort(() => 0.5 - Math.random())).slice(11);
+      console.log('reeeeeeee', twelveSongs)
+      return res.json({ twelveSongs });
+
+       
+    // const splashSongs = await Song.findAll
+    //   (
+    //     { 
+    //       limit: 12,
+    //       include: [Game, Genre]
+    //     }
+    //   );
+    
+  })
+);
 
 //edit single song
 
