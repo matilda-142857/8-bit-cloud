@@ -1,8 +1,9 @@
 import { csrfFetch } from './csrf';
 
-const GET_ALL_SONGS = "song/GET";
-const ADD_SONG = "song/ADD";
-const DELETE_SONG= "song/DELETE"
+const GET_ALL_SONGS = "song/GET_ALL_SONGS";
+const GET_SPLASH_SONGS = "song/GET_SPLASH_SONGS";
+const ADD_SONG = "song/ADD_SONG";
+const DELETE_SONG= "song/DELETE_SONG"
 
 const actionAllSongs = songs => {
   return {
@@ -11,12 +12,19 @@ const actionAllSongs = songs => {
   }
 }
 
+const getSplashSongs = songs => {
+  return {
+    type: GET_SPLASH_SONGS,
+    songs,
+  }
+}
+
 const actionAddSong = song => {
   return {
       type: ADD_SONG,
       song
-  };
-};
+  }
+}
 
 const actionDeleteSong = songId => {
   return {
@@ -30,6 +38,16 @@ export const getAllSongs = () => async (dispatch) => {
   if (response.ok) {
     const songs = await response.json();
     dispatch (actionAllSongs(songs));
+    return songs;
+  }
+};
+
+export const getSplashPageSongs = () => async (dispatch) => {
+  const res = await fetch(`/api/songs/splash`);
+  if (res.ok){
+    const songs = await res.json();
+    console.log('reeee', songs);
+    dispatch(getSplashSongs(songs));
     return songs;
   }
 };
@@ -145,14 +163,21 @@ export const deleteSong = (songId) => async dispatch => {
     }
   }
 
-const songReducer = (state = {}, action) => {
+const initialState = {};
+
+const songReducer = (state = initialState, action) => {
 
     switch (action.type) {
 
       case GET_ALL_SONGS:
         const currentState = {}
-          action.songs.forEach(song => currentState[song.id] = song)
-          return currentState
+          action.songs.forEach(song => currentState[song.id] = song);
+          return currentState;
+
+      case GET_SPLASH_SONGS:
+        const splashState = {}
+          action.songs.forEach(song => splashState[song.id] = song);
+          return splashState;
 
       // case GET_ONE_SONG:
       //   let thisState = {}
@@ -161,12 +186,12 @@ const songReducer = (state = {}, action) => {
 
       case ADD_SONG:
         let newState = {}
-          newState = {...state, [action.song.id]: action.song}
-          return newState
+          newState = {...state, [action.song.id]: action.song};
+          return newState;
 
       case DELETE_SONG:
         const delState = {...state};
-        delete delState[action.songId]
+        delete delState[action.songId];
         return delState;
 
       default:

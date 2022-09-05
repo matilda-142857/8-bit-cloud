@@ -3,7 +3,7 @@ import "./splashheader.css";
 import { useSelector, useDispatch } from "react-redux";
 // import { openLogin, closeLogin } from "../../store/modal";
 import Modal from "react-modal";
-import LoginForm from "../LoginFormModal/LoginForm";
+import LoginForm from "../../LoginFormModal/LoginForm";
 import img1 from "./8bsplash1.png"
 import img2 from "./8bsplash2.png"
 
