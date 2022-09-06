@@ -65,23 +65,68 @@
 
 /* SplashSongs CSS */
 
-.splashsongs-container{
-  border: 1px solid green;
-  height: 600px;
+.splashsongs-div{
+  /* height: 900px; */
   width: 1400px;  
+  background-color: white;
+  margin: 0 auto 40px auto;
+}
+
+#splash-tracks-title{
+  /* padding: 20px 0px 20px 0px; */
   margin-left: auto; 
   margin-right: auto; 
+  font-size: 20px;
+  color: black;
+  font-family: 'Silkscreen', cursive;
+  height: 100px;
+  width: 1400px;  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  /* border: 1px solid orange; */
+}
+
+.splashsongs-container{
+  height: 600px;
+  width: 1350px;  
+  padding: 10px;
+  background-color: white;
+  margin: 0 auto 30px auto;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .single-splashsong-div{
-  border: 1px solid blue;
-  width: 16%;
-  height:250px;
+  width: 14.5%;
+  height: 45%;
+  margin: 1%;
+  display: flex;
+  flex-direction: column;
+  /* padding-inline: ; */
 }
 
-.splashsong-cover{
-  width: 90%;
+#splashsong-cover{
+  width: 100%;
   height: auto;
+  border: 1px solid rgb(0, 0, 0, .2)
+}
+
+#splashsong-title{
+  font-size: 16px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: normal;
+  margin: 5px 0px 5px 0px;
+}
+
+#splashsong-artist{
+  font-size: 13px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: normal;
 }
