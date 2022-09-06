@@ -62,3 +62,26 @@
   background: rgb(048, 195, 124);
   border: none;
 }
+
+/* SplashSongs CSS */
+
+.splashsongs-container{
+  border: 1px solid green;
+  height: 600px;
+  width: 1400px;  
+  margin-left: auto; 
+  margin-right: auto; 
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.single-splashsong-div{
+  border: 1px solid blue;
+  width: 16%;
+  height:250px;
+}
+
+.splashsong-cover{
+  width: 90%;
+  height: auto;
+}

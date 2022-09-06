@@ -16,28 +16,25 @@ export function SplashTracks() {
     dispatch(getSplashPageSongs());
   }, [dispatch]);
 
-  const splashSongs = useSelector((state) => state.songs.splashSongs);
-  console.log("aaaaasfggsgsg", songs)
-
   return (
-    <div className="tr-container">
+    <div className="splashsongs-container">
       <p id="trending-tracks-title">
         Hear what’s trending in the 8BitCloud community
       </p>
-      <div className="trending-covers-container">
+      <div className="splashsongs-container">
         {songs?.map((song) => {
           return (
             <div
-              className="trending-cover-container"
+              className="single-splashsong-div"
             //   key={song.id}
             //   onClick={() => {
             //     dispatch(openLogin());
             //     window.scrollTo(0, 0);
             //   }}
             >
-              <img className="trending-cover" src={song.Game.img_url}></img>
-              <a className="trending-cover-title">{song.title}</a>
-              <a className="trending-cover-artist">{song.Game.title}</a>
+              <img className="splashsong-cover" src={song.Game.img_url}></img>
+              <a className="splashsong-title">{song.title}</a>
+              <a className="splashsong-artist">{song.Game.title}</a>
             </div>
           );
         })}
