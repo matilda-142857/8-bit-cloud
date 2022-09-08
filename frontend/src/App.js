@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 
+import MusicPlayer from '../src/components/MusicPlayer/MusicPlayer';
 import UploadForm from "./components/UploadFormPage/UploadFormPage";
 import UpdateForm from "./components/UpdateFormPage/UpdateFormPage";
 import AboutMe from "./components/About/about";
@@ -31,6 +32,7 @@ function App() {
       />
       {isLoaded && (
         <Switch>
+          <MusicPlayer/>
            <Route exact path="/">
             <SplashPage />
           </Route>
