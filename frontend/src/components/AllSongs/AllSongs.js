@@ -13,8 +13,6 @@ export default function AllSongs({ isLoaded }) {
   const songs = useSelector((state) => {
     return Object.values(state.songs);
   });
-  // const songs = useSelector((state) => state.songs);
-  // const songsarray = Object.values(songs);
 
   useEffect(() => {
     dispatch(getAllSongs());

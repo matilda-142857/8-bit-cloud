@@ -46,9 +46,9 @@ export default function SongPage({ isLoaded }) {
     });
   }
 
-  if (!sessionUser) {
-    sessionUser = { id: 0 }
-  }
+  // if (!sessionUser) {
+  //   sessionUser = { id: 1 }
+  // }
 
   const handleEdit = song => {
     history.push(`/song/edit/${song.id}`)

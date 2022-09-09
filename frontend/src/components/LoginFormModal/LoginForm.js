@@ -35,49 +35,51 @@ export default function LoginForm() {
 
   return (
     <div className="login-container">
-      <div id="login-title">Welcome back!</div>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        {/* <label> Username or Email */}
-        <input
-          type="text"
-          value={credential}
-          onChange={(e) => setCredential(e.target.value)}
-          placeholder="Your email address or username"
-          className="login-inputs"
-          required
-        />
-        {/* </label>
+      <div className="login-items">
+        <div id="login-title">Welcome back!</div>
+        <form onSubmit={handleSubmit} className="login-form">
+          <ul>
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+            ))}
+          </ul>
+          {/* <label> Username or Email */}
+          <input
+            type="text"
+            value={credential}
+            onChange={(e) => setCredential(e.target.value)}
+            placeholder="Your email address or username"
+            className="login-inputs"
+            required
+          />
+          {/* </label>
       <label> Password*/}
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Your Password"
-          className="login-inputs"
-          required
-        />
-        {/* </label> */}
-        <button className="loginFormBtns" type="submit">
-          Log In
-        </button>
-      </form>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Your Password"
+            className="login-inputs"
+            required
+          />
+          {/* </label> */}
+          <button className="loginFormBtns" id="submitBtn" type="submit">
+            Log In
+          </button>
+        </form>
 
-      <div className="login-or">
-        <div className="before-or"></div>
-        <div>or</div>
-        <div className="after-or"></div>
+        <div className="login-or">
+          <div className="before-or"></div>
+          <div>or</div>
+          <div className="after-or"></div>
+        </div>
+
+        <form onSubmit={demoSubmit} className="login-form">
+          <button className="loginFormBtns" id="demoBtn" type="submit">
+            Log In As A Guest
+          </button>
+        </form>
       </div>
-
-      <form onSubmit={demoSubmit}>
-        <button className="loginFormBtns" id="demoBtn" type="submit">
-          Log In As A Guest
-        </button>
-      </form>
     </div>
   );
 }

@@ -30,8 +30,6 @@ const validateSong = [
   handleValidationErrors
 ];
 
-//discover page
-
 //get all songs
 router.get(
   '/',
@@ -44,6 +42,20 @@ router.get(
   })
 )
 
+//get 12 songs on splash
+router.get(
+  "/splash",
+  asyncHandler(async (req, res) => {
+    const allSongs = await Song.findAll(
+        { 
+          include: [Game, Genre],
+        }
+      );
+      const twelveSongs = ([...allSongs].sort(() => 0.5 - Math.random())).slice(0, 12); 
+      return res.json(twelveSongs);
+  })
+);
+
 //get all songs of user
 router.get(
   '/library', restoreUser, asyncHandler(async(req,res)=>{
@@ -52,6 +64,7 @@ router.get(
       userId: req.user.id
     }
   })
+  console.log('this is the /library route')
   res.json(songs)
   })
 )
@@ -80,6 +93,7 @@ router.post(
       genreId,
       songmp3
     })
+    console.log('this is the /upload route')
     res.json(newSong)
   })
 )
@@ -90,24 +104,12 @@ router.get(
   restoreUser, asyncHandler(async(req,res)=>{
     const songId = parseInt(req.params.songId, 10);
     const song = await Song.findByPk(songId)
+    console.log('this is the /songId route')
     res.json(song)
   })
 )
 
-//get 12 songs on splash page
-// router.get(
-//   "/splash",
-//   asyncHandler(async (req, res) => {
-//     const splashSongs = await Song.findAll
-//       (
-//         { 
-//           limit: 12,
-//           include: [Game, Genre]
-//         }
-//       );
-//     return res.json({ splashSongs });
-//   })
-// );
+
 
 //edit single song
 
