@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { useMusicContext } from '../../context/MusicContext';
@@ -8,6 +8,12 @@ function SongElement({song}) {
   const sessionUser = useSelector(state=> state.session.user);
   const dispatch = useDispatch();
   const {audioLists, setAudioLists, setClearAudioList} = useMusicContext();
+  const path = useLocation();
+  const play = useRef();
+
+  // if ((path.pathname != `/song/\d`)) {
+  //   play.className = ("element-play-button");
+  // }
 
   const addToPlayer = async() => {
     setClearAudioList(true);
@@ -23,10 +29,10 @@ function SongElement({song}) {
   }
 
   return (
+
     <div className="single-song-div">
         <img id="song-cover" src={song.Game.img_url}></img>
-        <div id="element-play-button" className = "playbkg playicon"
-        onClick={addToPlayer}></div> 
+        <div ref={play} className= 'element-play-button' id="play-button" onClick={addToPlayer}></div> 
         <a id="song-title">{song.title}</a>
         <a id="song-artist">{song.Game.title}</a>
     </div>

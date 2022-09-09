@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 
-import MusicPlayer from '../src/components/MusicPlayer/MusicPlayer';
+import MusicPlayer from "../src/components/MusicPlayer/MusicPlayer";
 import UploadForm from "./components/UploadFormPage/UploadFormPage";
 import UpdateForm from "./components/UpdateFormPage/UpdateFormPage";
 import AboutMe from "./components/About/about";
@@ -22,7 +22,8 @@ function App() {
   return (
     <>
       <style>
-        @import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@100&family=Gothic+A1:wght@600&family=Libre+Franklin:wght@700&family=Nanum+Gothic&family=Open+Sans:wght@300&family=Roboto:wght@300&family=Silkscreen&display=swap');
+        @import
+        url('https://fonts.googleapis.com/css2?family=Catamaran:wght@100&family=Gothic+A1:wght@600&family=Libre+Franklin:wght@700&family=Nanum+Gothic&family=Open+Sans:wght@300&family=Roboto:wght@300&family=Silkscreen&display=swap');
       </style>
       <link
         rel="stylesheet"
@@ -32,36 +33,36 @@ function App() {
       />
       {isLoaded && (
         <>
-        <MusicPlayer/>
-        <Switch>
-           <Route exact path="/">
-            <SplashPage />
-          </Route>
-          <Route exact path="/about">
-          <Navigation isLoaded={isLoaded} />
-            <AboutMe />
-          </Route>
-          <Route exact path="/upload">
-          <Navigation isLoaded={isLoaded} />
-            <UploadForm />
-          </Route>
-          <Route exact path='/song/edit/:songId'>
-          <Navigation isLoaded={isLoaded} />
-            <UpdateForm />
-          </Route>
-          <Route path="/songs/:songId">
-          <Navigation isLoaded={isLoaded} />
-            <SongPage />
-          </Route>
-          <Route exact path="/songs">
-          <Navigation isLoaded={isLoaded} />
-            <AllSongs />
-          </Route>
-          <Route path="/songs/:songId">
-          <Navigation isLoaded={isLoaded} />
-            <SongPage isLoaded={isLoaded} />
-          </Route>
-        </Switch>
+          <MusicPlayer />
+          <Switch>
+            <Route exact path="/">
+              <SplashPage />
+            </Route>
+            <Route exact path="/about">
+              <Navigation isLoaded={isLoaded} />
+              <AboutMe />
+            </Route>
+            <Route exact path="/upload">
+              <Navigation isLoaded={isLoaded} />
+              <UploadForm />
+            </Route>
+            <Route exact path="/song/edit/:songId">
+              <Navigation isLoaded={isLoaded} />
+              <UpdateForm />
+            </Route>
+            <Route path="/songs/:songId">
+              <Navigation isLoaded={isLoaded} />
+              <SongPage />
+            </Route>
+            <Route exact path="/songs">
+              <Navigation isLoaded={isLoaded} />
+              <AllSongs />
+            </Route>
+            <Route path="/songs/:songId">
+              <Navigation isLoaded={isLoaded} />
+              <SongPage isLoaded={isLoaded} />
+            </Route>
+          </Switch>
         </>
       )}
     </>
