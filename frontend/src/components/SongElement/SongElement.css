@@ -59,15 +59,18 @@
   
   #song-title{
     font-size: 16px;
+    color:#494949;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     word-break: normal;
     margin: 5px 0px 5px 0px;
+    text-decoration: none;
   }
   
   #song-artist{
     font-size: 13px;
+    color:#626262;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;

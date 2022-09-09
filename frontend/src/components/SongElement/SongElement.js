@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useLocation, NavLink } from 'react-router-dom';
 import { useMusicContext } from '../../context/MusicContext';
 import './SongElement.css';
 
@@ -32,8 +32,8 @@ function SongElement({song}) {
 
     <div className="single-song-div">
         <img id="song-cover" src={song.Game.img_url}></img>
-        <div ref={play} className= 'element-play-button' id="play-button" onClick={addToPlayer}></div> 
-        <a id="song-title">{song.title}</a>
+        <div ref={play} className= 'element-play-button' id="play-button" onClick={addToPlayer}></div>
+        <NavLink id="song-title" to={`/songs/${song.id}`}>{song.title}</NavLink>
         <a id="song-artist">{song.Game.title}</a>
     </div>
   )
