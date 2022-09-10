@@ -5,6 +5,8 @@
     width: 100%;
     background-color: #333;
     height: 46px;
+    display: flex;
+    justify-content: center;
     z-index: 99;
   }
   
@@ -12,98 +14,80 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    position: fixed;
-    width: 40%;
-    /* ^ ??what even */
     background-color: #333;
     height: 46px;
     z-index: 100;
-  }
-  
-  #nav {
-    width: fit-content;
-    display: flex;
+    /* border: 1px solid blue; */
   }
 
-  #imgLogo {
-    width: 30%;
+  .nav-logo {
+    max-height: 46px;
+    /* max-width: 184px; */
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 10px 0px 10px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+    #imgLogo {
+    width: 100%;
     height: 50%;
     align-items: center;
     background-color: transparent;
     position: relative;
-    left: 15px;
-    top: 10px;
   }
-  
-  #logo {
-    max-height: 46px;
-    max-width: 184px;
-    padding: 2%;
-    background-color: #1590ee;
+
+  #txtLogo{
     display: flex;
-    /* justify-content: center; */
-    /* align-items: center; */
-    /* position: fixed; */
-    padding-left: 10px;
-    /* padding-right: 10px; */
-    /* border: 1px solid red; */
+    position: relative;
+    font-family: 'Silkscreen', cursive;
+    font-weight: 400;
+    letter-spacing: 2px;
+    cursor: pointer;
+    margin: 4px 6px 4px 2px;
+    font-size: 15px;
+    color: whitesmoke;
+    text-decoration: none;
   }
   
   #homeBtn {
-    min-width: 70px;
     display: flex;
     position: relative;
     bottom: 8px;
     left: 5px;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Silkscreen', cursive;
     font-weight: 600;
     letter-spacing: 3px;
     cursor: pointer;
-    text-align: center;
     font-size: 14px;
     color: whitesmoke;
-    margin: 10px;
-    padding: 10px;
     text-decoration: none;
   }
 
-  #nav-home, #nav-library{
+  .nav-item{
     border-right: 1px solid black;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Silkscreen', cursive;
     font-size: 14px;
+    font-weight: 400;
     text-decoration: none;
-    color: #78bff6;
+    color: rgb(215, 215, 215);
     min-width: 103px;
     text-align: center;
     letter-spacing: 1px;
-
     position: relative;
-    left: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    height: 105%
+    height: 100%
   }
 
-  #nav-upload {
-    border-right: 1px solid black;
-    font-family: 'Lato', sans-serif;
-    font-size: 14px;
-    text-decoration: none;
-    color: #78bff6;
-    min-width: 103px;
-    text-align: center;
-    letter-spacing: 1px;
-
-    position: relative;
-    left: 48px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+  .nav-item:hover{
+    color:white;
   }
   
   #nav-profile {
@@ -217,19 +201,18 @@
   }
   
   .nav-search {
-    height: 26px;
+    height: 28px;
     width: 430px;
     outline: none;
     border: none;
     border-radius: 4px;
-    padding-left: 8px;
+    padding: 0px 30px 0px 8px;
     font-size: 14px;
-    transition: background 0.5s;
   }
   
   .nav-search-container {
     position: relative;
-    left: 40px;
+    padding: 0px 10px 0px 10px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -239,16 +222,60 @@
   }
   
   .nav-search-btn {
-    z-index: 20;
+    z-index: 2;
     width: 15px;
     outline: 0;
     border: 0;
     background: transparent;
     height: 15px;
-    border-radius: 0 5px 5px 0;
     position: absolute;
     cursor: pointer;
-    top: 15px;
-    right: 15px;
+    top: 16px;
+    right: 25px;
     color: gray;
+  }
+
+  .nav-session{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #loginbtn.navbtn{ 
+    font-size: 13px;
+    text-decoration: none;
+    padding: 8px;
+    border-radius: 8px;
+    font-family: 'Silkscreen', cursive;
+    color: rgb(215, 215, 215);
+    background-color: transparent;
+    min-width: 90px;
+    border: 1px solid rgb(215, 215, 215);
+    margin: 0px 4px 0px 2px;
+  }
+
+  #loginbtn.navbtn:hover{
+    color: white;
+    border: 2px solid rgb(215, 215, 215);
+    padding: 7px;
+  }
+
+  #signupbtn.navbtn{ 
+    font-size: 13px;
+    text-decoration: none;
+    padding: 9px;
+    border-radius: 8px;
+    font-family: 'Silkscreen', cursive;
+    color: whitesmoke;
+    width: 190px;
+    background: rgb(048, 195, 124);
+    border: none;
+    margin: 0px 4px 0px 2px;
+  }
+
+  #signupbtn.navbtn:hover{
+    color: white;
+    background: rgb(61, 219, 143);
   }

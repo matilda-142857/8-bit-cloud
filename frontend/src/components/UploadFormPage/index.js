@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Modal } from "../../context/Modal";
-import LoginForm from "./LoginForm";
-import "./LoginForm.css";
+import UploadForm from "./UploadFormPage";
 
-function LoginFormModal() {
+function UploadFormModal() {
   const [showModal, setShowModal] = useState(false);
   const path = useLocation();
 
@@ -37,4 +36,4 @@ function LoginFormModal() {
   }
 }
 
-export default LoginFormModal;
+export default UploadFormModal;
