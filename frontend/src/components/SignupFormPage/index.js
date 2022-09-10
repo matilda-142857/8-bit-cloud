@@ -7,7 +7,7 @@ function SignupFormModal() {
   const [showModal, setShowModal] = useState(false);
   const path = useLocation();
 
-  if ((path.pathname = "/")) {
+  if ((path.pathname === "/")) {
     return (
       <>
         <button className="splashbtn" id="signupbtn" onClick={() => setShowModal(true)}>
